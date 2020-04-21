@@ -16,10 +16,11 @@ class CommerceAuth
      */
     public function handle($request, Closure $next)
     {
-        $user = $_SERVER['PHP_AUTH_USER'];
-        $password = $_SERVER['PHP_AUTH_PW'];
-
-        if (! isset($user, $password) && $user !== config('commerce.user') && $password !== config('commerce.password')) {
+        if (
+            ! isset($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW'])
+            &&  $_SERVER['PHP_AUTH_USER'] !== config('commerce.user')
+            && $_SERVER['PHP_AUTH_PW'] !== config('commerce.password')
+        ) {
             abort(403);
         }
 
