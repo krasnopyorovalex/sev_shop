@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
@@ -6,6 +6,7 @@ use Domain\Redirect\Queries\GetRedirectByUriQuery;
 use App\Redirect;
 use Closure;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Http\Request;
 
 /**
  * Class CheckRedirectDb
@@ -18,8 +19,8 @@ class CheckRedirectDb
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure  $next
+     * @param  Request $request
+     * @param Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -33,19 +34,29 @@ class CheckRedirectDb
            return redirect($existedInDb->url_new, 301);
         }
 
-        if ((strpos($request->getPathInfo(), '//') !== false) || (substr($request->getPathInfo(), -1) == '/' && $request->getPathInfo() != '/')) {
+        if ($request->getPathInfo() !== '/' && substr($request->getPathInfo(), -1) === '/') {
 
-            $actualUrl = preg_replace("/\/+/","/", $request->getPathInfo());
+            $actualUrl = preg_replace("/\/+/", '/', $request->getPathInfo());
 
-            if( substr($actualUrl, -1) == '/' ){
-                while( substr($actualUrl, -1) == '/' ){
+            if( substr($actualUrl, -1) === '/' ){
+                while( substr($actualUrl, -1) === '/' ){
+                    $actualUrl = substr($actualUrl, 0, -1);
+                }
+            }
+            return redirect($actualUrl, 301);
+        } elseif (strpos($request->getPathInfo(), '//') !== false) {
+
+            $actualUrl = preg_replace("/\/+/", '/', $request->getPathInfo());
+
+            if (substr($actualUrl, -1) === '/') {
+                while (substr($actualUrl, -1) === '/') {
                     $actualUrl = substr($actualUrl, 0, -1);
                 }
             }
             return redirect($actualUrl, 301);
         }
 
-        if (strstr($request->fullUrl(), 'index.')) {
+        if (strpos($request->fullUrl(), 'index.') !== false) {
             $actualUrl = preg_replace('#index\.(\w)*(\/)?#', '', $request->fullUrl());
             return redirect($actualUrl, 301);
         }

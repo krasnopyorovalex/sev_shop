@@ -40,7 +40,7 @@ Route::group(['prefix' => '_root', 'middleware' => 'auth', 'namespace' => 'Admin
 });
 
 //1c export\import
-Route::group(['prefix' => 'commerce', 'namespace' => 'Commerce', 'as' => 'commerce.'], static function () {
+Route::group(['prefix' => 'commerce', 'middleware' => 'auth.commerce', 'namespace' => 'Commerce', 'as' => 'commerce.'], static function () {
 
     Route::get('import', 'CommerceController@import')->name('import');
 });

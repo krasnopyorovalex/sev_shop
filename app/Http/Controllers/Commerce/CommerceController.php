@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Http\Controllers\Commerce;
 
@@ -10,6 +8,9 @@ class CommerceController extends Controller
 {
     public function import()
     {
-        dd('ascasc');
+        $cookieName = 'test';
+        $cookieValue = 'ascasc';
+
+        return response('«success»' . PHP_EOL . $cookieName . PHP_EOL . $cookieValue);
     }
 }
