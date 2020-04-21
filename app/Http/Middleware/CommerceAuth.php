@@ -19,9 +19,7 @@ class CommerceAuth
         $user = $_SERVER['PHP_AUTH_USER'];
         $password = $_SERVER['PHP_AUTH_PW'];
 
-        $isAuth = ($user === config('commerce.user') && $password === config('commerce.password'));
-
-        if (! $isAuth) {
+        if (! isset($user, $password) && $user !== config('commerce.user') && $password !== config('commerce.password')) {
             abort(403);
         }
 
