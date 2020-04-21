@@ -18,7 +18,7 @@ class CommerceAuth
     {
         if (
             ! isset($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW'])
-            &&  $_SERVER['PHP_AUTH_USER'] !== config('commerce.user')
+            && $_SERVER['PHP_AUTH_USER'] !== config('commerce.user')
             && $_SERVER['PHP_AUTH_PW'] !== config('commerce.password')
         ) {
             abort(403);
