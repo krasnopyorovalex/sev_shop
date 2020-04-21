@@ -11,8 +11,6 @@ class CommerceController extends Controller
         $cookieName = 'test';
         $cookieValue = 'ascasc';
 
-        return response('success' . PHP_EOL . $cookieName . PHP_EOL . $cookieValue, 200, [
-            'Content-Type' => 'text/html'
-        ]);
+        return response('success' . PHP_EOL . $cookieName . PHP_EOL . $cookieValue);
     }
 }
