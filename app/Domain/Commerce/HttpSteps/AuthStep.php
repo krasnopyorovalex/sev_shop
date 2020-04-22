@@ -10,12 +10,13 @@ final class AuthStep extends Step
 {
     public function handle(): void
     {
-        $session = session($this->cookieName, Str::random());
+        $cookieValue = Str::random();
+        $this->request->session()->put($this->cookieName, $cookieValue);
 
         $this->status = sprintf('%s' . PHP_EOL . '%s' . PHP_EOL . '%s',
             'success',
             $this->cookieName,
-            $session->get($this->cookieName)
+            $cookieValue
         );
     }
 }

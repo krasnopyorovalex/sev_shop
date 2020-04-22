@@ -21,17 +21,23 @@ class CommerceController extends Controller
      */
     public function __invoke(CommerceRequest $request)
     {
-        Log::info($request->get('mode'));
 
-        try {
-            $step = StepSimpleFactory::factory($request);
+        $request->session()->put('test', 'jkhn1221value');
 
-            $step->handle();
-        } catch (Exception $exception) {
-            Log::error($exception->getMessage());
-            return response($exception->getMessage());
-        }
+        dd($request->session()->get('test'));
 
-        return response($step->getStatus());
+
+//        Log::info($request->get('mode'));
+//
+//        try {
+//            $step = StepSimpleFactory::factory($request);
+//
+//            $step->handle();
+//        } catch (Exception $exception) {
+//            Log::error($exception->getMessage());
+//            return response($exception->getMessage());
+//        }
+//
+//        return response($step->getStatus());
     }
 }
