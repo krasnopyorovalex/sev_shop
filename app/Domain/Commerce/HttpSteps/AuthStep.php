@@ -13,6 +13,8 @@ final class AuthStep extends Step
         $cookieValue = Str::random();
         $this->request->session()->put($this->cookieName, $cookieValue);
 
+        \Log::info('real: ' . $this->request->session()->get($this->cookieName));
+
         $this->status = sprintf('%s' . PHP_EOL . '%s' . PHP_EOL . '%s',
             'success',
             $this->cookieName,
