@@ -45,7 +45,7 @@ abstract class Step
      */
     protected function verifyCookie(): bool
     {
-        [$cookieName, $cookieValue] = $this->request->header('Cookie');
+        [$cookieName, $cookieValue] = explode('=', $this->request->header('Cookie'));
 
         return $cookieName === $this->cookieName && cookie($this->cookieName) === $cookieValue;
     }
