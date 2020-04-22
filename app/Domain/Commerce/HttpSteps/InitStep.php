@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Domain\Commerce\HttpSteps;
+use InvalidArgumentException;
 
 final class InitStep extends Step
 {
@@ -10,9 +11,9 @@ final class InitStep extends Step
 
     public function handle(): void
     {
-        //$this->verifyCookie();
-
-        \Log::info((string)$this->request->header('Cookie'));
+        if (! $this->verifyCookie()) {
+            throw new InvalidArgumentException('Bad value cookie given:(');
+        }
 
         $this->status = sprintf('%s' . PHP_EOL . '%s',
             'zip=yes',

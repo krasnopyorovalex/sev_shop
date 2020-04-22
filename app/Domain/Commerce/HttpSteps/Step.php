@@ -41,12 +41,13 @@ abstract class Step
     }
 
     /**
-     * @param $cookie
      * @return bool
      */
-    protected function verifyCookie($cookie): bool
+    protected function verifyCookie(): bool
     {
-        return cookie($this->cookieName) === $cookie;
+        [$cookieName, $cookieValue] = $this->request->header('Cookie');
+
+        return $cookieName === $this->cookieName && cookie($this->cookieName) === $cookieValue;
     }
 
     abstract public function handle(): void;
