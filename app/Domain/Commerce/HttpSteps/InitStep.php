@@ -17,7 +17,5 @@ final class InitStep extends Step
             'zip=yes',
             'file_limit=2097152'
         );
-
-        \Log::info($this->status);
     }
 }

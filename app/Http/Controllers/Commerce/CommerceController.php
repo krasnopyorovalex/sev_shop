@@ -32,6 +32,8 @@ class CommerceController extends Controller
             return response($exception->getMessage());
         }
 
+        Log::info($step->getStatus());
+
         return response($step->getStatus());
     }
 }
