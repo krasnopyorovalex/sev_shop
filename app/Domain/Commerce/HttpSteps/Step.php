@@ -47,6 +47,8 @@ abstract class Step
     {
         [$cookieName, $cookieValue] = explode('=', $this->request->header('Cookie'));
 
+        \Log::info($cookieName . ' = ' . $cookieValue . ' real:' . cookie($this->cookieName));
+
         return $cookieName === $this->cookieName && cookie($this->cookieName) === $cookieValue;
     }
 
