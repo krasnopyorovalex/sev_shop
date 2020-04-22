@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Domain\Commerce\HttpSteps;
 
 use App\Http\Requests\Request;
+use Cache;
 
 abstract class Step
 {
@@ -47,9 +48,9 @@ abstract class Step
     {
         [$cookieName, $cookieValue] = explode('=', $this->request->header('Cookie'));
 
-        \Log::info($cookieName . ' = ' . $cookieValue . ' real:' . $this->request->session()->get($this->cookieName));
+        \Log::info($cookieName . ' = ' . $cookieValue . ' real:' . Cache::get($this->cookieName));
 
-        return $cookieName === $this->cookieName && $this->request->session()->get($this->cookieName) === $cookieValue;
+        return $cookieName === $this->cookieName && Cache::get($this->cookieName) === $cookieValue;
     }
 
     abstract public function handle(): void;
