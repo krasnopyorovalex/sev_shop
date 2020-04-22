@@ -7,8 +7,6 @@ use InvalidArgumentException;
 
 final class InitStep extends Step
 {
-    private const MAX_FILE_SIZE = 2097152; //2Mb
-
     public function handle(): void
     {
         if (! $this->verifyCookie()) {
@@ -17,7 +15,9 @@ final class InitStep extends Step
 
         $this->status = sprintf('%s' . PHP_EOL . '%s',
             'zip=yes',
-            'file_limit=' . self::MAX_FILE_SIZE
+            'file_limit=2097152'
         );
+
+        \Log::info($this->status);
     }
 }
