@@ -20,11 +20,8 @@ class CommerceController extends Controller
      */
     public function __invoke(CommerceRequest $request)
     {
-
-        \Log::info((string)$request->headers);
-
         try {
-            $step = StepSimpleFactory::factory($request->get('mode'));
+            $step = StepSimpleFactory::factory($request);
 
             $step->handle();
         } catch (Exception $exception) {

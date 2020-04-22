@@ -6,7 +6,7 @@ namespace Domain\Commerce\HttpSteps;
 
 use Illuminate\Support\Str;
 
-class AuthStep extends Step
+final class AuthStep extends Step
 {
     public function handle(): void
     {

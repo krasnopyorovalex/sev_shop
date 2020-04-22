@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Commerce\HttpSteps;
 
+use App\Http\Requests\Request;
+
 abstract class Step
 {
     /**
@@ -16,7 +18,19 @@ abstract class Step
      */
     protected $cookieName = 'auth.code';
 
-    abstract public function handle();
+    /**
+     * @var Request
+     */
+    protected $request;
+
+    /**
+     * Step constructor.
+     * @param Request $request
+     */
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
 
     /**
      * @return string
@@ -34,4 +48,6 @@ abstract class Step
     {
         return cookie($this->cookieName) === $cookie;
     }
+
+    abstract public function handle(): void;
 }
