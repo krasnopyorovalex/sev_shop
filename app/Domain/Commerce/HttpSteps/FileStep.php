@@ -13,6 +13,7 @@ final class FileStep extends Step
             throw new InvalidArgumentException('Bad value cookie given:(');
         }
 
+        \Log::info('not FileStep:(');
         \Log::info($this->request->get('filename'));
 
         $this->status = sprintf('%s', 'success');
