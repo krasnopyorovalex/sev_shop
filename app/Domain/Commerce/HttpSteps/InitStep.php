@@ -7,7 +7,7 @@ use InvalidArgumentException;
 
 final class InitStep extends Step
 {
-    private const MAX_FILE_SIZE = 2000*1024; //2Mb
+    private const MAX_FILE_SIZE = 2097152; //2Mb
 
     public function handle(): void
     {

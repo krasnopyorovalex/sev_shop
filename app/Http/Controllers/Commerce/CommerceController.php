@@ -11,6 +11,7 @@ use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Response;
+use Log;
 
 class CommerceController extends Controller
 {
@@ -20,13 +21,14 @@ class CommerceController extends Controller
      */
     public function __invoke(CommerceRequest $request)
     {
-        \Log::info($request->get('mode'));
+        Log::info($request->get('mode'));
 
         try {
             $step = StepSimpleFactory::factory($request);
 
             $step->handle();
         } catch (Exception $exception) {
+            Log::error($exception->getMessage());
             return response($exception->getMessage());
         }
 
