@@ -22,7 +22,7 @@ final class ImportSimpleFactory
     {
         $step = $request->get('mode');
 
-        Log::info($request->get('mode'));
+        Log::info($step);
 
         if ($step === 'checkauth') {
             return new AuthStep($request);

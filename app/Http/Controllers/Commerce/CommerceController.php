@@ -30,7 +30,7 @@ class CommerceController extends Controller
             $step->handle();
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
-            return response($exception->getMessage());
+            return response(sprintf('%s'.PHP_EOL.'%s', 'failure', $exception->getMessage()));
         }
 
         return response($step->getStatus());
