@@ -22,6 +22,15 @@ Route::post('form/send-recall', 'FormHandlerController@recall')->name('recall.se
 Route::get('search', 'SearchController')->name('search');
 Route::get('sitemap.xml', 'SitemapController@xml')->name('sitemap.xml');
 
+//cart routes
+Route::group(['prefix' => 'cart', 'as' => 'cart.'], static function () {
+    Route::get('', 'CartController@index')->name('index');
+    Route::post('add/{product}', 'CartController@add')->name('add')->where('product', '[0-9]+');
+    Route::post('remove/{product}', 'CartController@remove')->name('remove')->where('product', '[0-9]+');
+    Route::post('update/{product}/{quantity}', 'CartController@update')->name('update')->where('product', '[0-9]+')->where(['quantity', '[0-9]+' ]);
+    Route::post('order', 'CartOrderController@order')->name('order');
+});
+
 Route::group(['middleware' => ['redirector']], static function () {
     Route::get('{alias}', 'CatalogController@show')->name('catalog.show');
     Route::get('/{alias?}/{page?}', 'PageController@show')->name('page.show')->where('page', '[0-9]+');

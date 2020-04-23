@@ -128,7 +128,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <div class="copyright">&copy; <span itemprop="copyrightYear">{{ date('Y') }}</span>. Море ламината. Все права защищены.</div>
+                        <div class="copyright">&copy; <span itemprop="copyrightYear">{{ date('Y') }}</span>. Магазин Севастополь. Все права защищены.</div>
                     </div>
                 </div>
             </div>
@@ -145,5 +145,6 @@
     <div class="popup__show-bg"></div><div class="notify"></div>
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
     <script src="{{ asset('js/app.min.js') }}"></script>
+    <script src="{{ mix('js/shop.js') }}"></script>
 </body>
 </html>

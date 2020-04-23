@@ -12,11 +12,17 @@ use App\Catalog;
  */
 class GetAllCatalogsWithoutParentQuery
 {
+    private static $cached;
+
     /**
      * Execute the job.
      */
     public function handle()
     {
-        return Catalog::with(['products','catalogs'])->where('parent_id', null)->orderBy('pos')->get();
+        if (! self::$cached) {
+            self::$cached = Catalog::with(['products','catalogs'])->where('parent_id', null)->orderBy('pos')->get();
+        }
+
+        return self::$cached;
     }
 }

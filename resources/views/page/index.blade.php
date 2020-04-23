@@ -8,7 +8,7 @@
     <meta property="og:url" content="{{ request()->getUri() }}">
     <meta property="og:image" content="{{ asset($page->image ? $page->image->path : 'img/logo.png') }}">
     <meta property="og:description" content="{{ $page->description }}">
-    <meta property="og:site_name" content="Море ламината">
+    <meta property="og:site_name" content="Магазин Севастополь">
     <meta property="og:locale" content="ru_RU">
 @endpush
 
@@ -22,7 +22,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-6">
-                    <div class="title">Море ламината, Симферополь</div>
+                    <div class="title">Магазин Севастополь, Симферополь</div>
                     <div class="sub__title">О компании</div>
                     <div class="text">
                         <p><a href="{{ route('commerce.import') }}" style="color: #ffa712">Commerce Import</a> Мы на рынке более 15 лет, поэтому предоставляем большой выбор ламинита, паркета и винила в Симферополе, на проспекте Победы.  Мы работаем с более чем 10 крупными поставщиками, одни из них известные фирмы: QUICK STEP и TARKETT. Многие товары и цвета в наличие, также есть возможность заказа интересующего материала и объема.</p>
