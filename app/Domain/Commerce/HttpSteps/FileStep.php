@@ -9,8 +9,8 @@ final class FileStep extends Step
 {
     public function handle(): void
     {
-        if (! $this->verifyCookie()) {
-            throw new InvalidArgumentException('Bad value cookie given:(');
+        if (! $this->verifyUser()) {
+            throw new InvalidArgumentException('Bad user login or password given:(');
         }
 
         \Log::info('not FileStep:(');

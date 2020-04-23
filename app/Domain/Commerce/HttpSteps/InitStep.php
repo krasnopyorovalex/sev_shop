@@ -9,7 +9,7 @@ final class InitStep extends Step
 {
     public function handle(): void
     {
-        if (! $this->verifyCookie()) {
+        if (! $this->verifyUser()) {
             throw new InvalidArgumentException('Bad value cookie given:(');
         }
 

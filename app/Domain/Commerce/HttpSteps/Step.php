@@ -43,11 +43,12 @@ abstract class Step
     /**
      * @return bool
      */
-    protected function verifyCookie(): bool
+    protected function verifyUser(): bool
     {
-        [$cookieName, $cookieValue] = explode('=', $this->request->header('Cookie'));
+        $user = $this->request->header('Php-Auth-User');
+        $password = $this->request->header('Php-Auth-Pw');
 
-        return $cookieName === $this->cookieName && $this->request->session()->getId() === $cookieValue;
+        return $user === config('commerce.user') && $password === config('commerce.password');
     }
 
     abstract public function handle(): void;
