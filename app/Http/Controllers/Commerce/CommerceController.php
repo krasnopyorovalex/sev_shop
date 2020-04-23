@@ -23,7 +23,7 @@ class CommerceController extends Controller
     public function __invoke(CommerceRequest $request)
     {
         try {
-            $step = $request->get('mode') === 'catalog'
+            $step = $request->get('type') === 'catalog'
                 ? ImportSimpleFactory::factory($request)
                 : ExportSimpleFactory::factory($request);
 
