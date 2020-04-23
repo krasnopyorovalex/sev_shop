@@ -10,8 +10,9 @@ use Domain\Commerce\HttpSteps\FileStep;
 use Domain\Commerce\HttpSteps\InitStep;
 use Domain\Commerce\HttpSteps\Step;
 use InvalidArgumentException;
+use Log;
 
-final class StepSimpleFactory
+final class ImportSimpleFactory
 {
     /**
      * @param Request $request
@@ -20,6 +21,8 @@ final class StepSimpleFactory
     public static function factory(Request $request): Step
     {
         $step = $request->get('mode');
+
+        Log::info($step);
 
         if ($step === 'checkauth') {
             return new AuthStep($request);
