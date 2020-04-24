@@ -22,6 +22,8 @@ class CommerceController extends Controller
      */
     public function __invoke(CommerceRequest $request)
     {
+        Log::info($request->headers);
+
         try {
             $step = $request->get('type') === 'catalog'
                 ? ImportSimpleFactory::factory($request)
@@ -33,7 +35,7 @@ class CommerceController extends Controller
             return response(sprintf('%s'.PHP_EOL.'%s', 'failure', $exception->getMessage()));
         }
 
-        Log::error($step->getStatus());
+        Log::info($step->getStatus());
 
         return response($step->getStatus());
     }
