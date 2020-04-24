@@ -64,10 +64,8 @@
                                     </div>
                                 </div>
                                 <div class="cart-list-item-remove">
-                                    <div class="btn-remove" title="Удалить товар" data-link="{{ route('cart.remove',['product' => $item->id]) }}">
-                                        <svg class="icon">
-                                            <use xlink:href="./img/symbols.svg#icon-trash"></use>
-                                        </svg>
+                                    <div class="btn-remove" title="Удалить товар" data-product="{{ $item->id }}">
+                                        {{ svg('icon-trash') }}
                                     </div>
                                 </div>
                                 <div class="cart-list-item-sum">

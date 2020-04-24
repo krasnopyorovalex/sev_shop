@@ -73,7 +73,7 @@
                             <a href="{{ route('page.show', 'cart') }}" class="h-cart">
                                 {{ svg('cart') }}
                                 <div class="h-cart-label">Корзина</div>
-                                <div class="h-cart-count">0</div>
+                                <div class="h-cart-count">{{ app('cart')->getTotalQuantity() }}</div>
                             </a>
                         </div>
                         <div class="call__popup call__btn visible__sm"></div>

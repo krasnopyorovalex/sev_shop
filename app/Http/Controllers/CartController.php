@@ -11,7 +11,6 @@ use Domain\Cart\Commands\UpdateCartCountCommand;
 use Domain\Cart\Queries\GetAllItemsCartQuery;
 use Domain\Cart\Queries\GetTotalPriceCartQuery;
 use Domain\Cart\Queries\GetTotalQuantityCartQuery;
-use Domain\Cart\Requests\AddToCartRequest;
 use Domain\CatalogProduct\Queries\GetCatalogProductByIdQuery;
 use Domain\Page\Queries\GetPageByAliasQuery;
 use Darryldecode\Cart\CartCollection;
@@ -44,16 +43,15 @@ class CartController extends Controller
 
     /**
      * @param int $id
-     * @param AddToCartRequest $request
      * @return array
      */
-    public function add(int $id, AddToCartRequest $request): array
+    public function add(int $id): array
     {
         /** @var $product CatalogProduct */
         $product = $this->dispatch(new GetCatalogProductByIdQuery($id));
 
         /** @var $response CartCollection */
-        $response = $this->dispatch(new AddToCartCommand($product, $request->get('count')));
+        $response = $this->dispatch(new AddToCartCommand($product));
         $quantity = $this->dispatch(new GetTotalQuantityCartQuery());
 
         return [
