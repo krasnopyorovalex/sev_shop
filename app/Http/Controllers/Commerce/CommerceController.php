@@ -33,6 +33,8 @@ class CommerceController extends Controller
             return response(sprintf('%s'.PHP_EOL.'%s', 'failure', $exception->getMessage()));
         }
 
+        Log::error($step->getStatus());
+
         return response($step->getStatus());
     }
 }
