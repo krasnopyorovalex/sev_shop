@@ -13,6 +13,8 @@ final class ImportStep extends Step
             throw new InvalidArgumentException('Bad user login or password given:(');
         }
 
+        \Log::info($this->request->getQueryString());
+
         $this->status = sprintf('%s', 'success');
     }
 }

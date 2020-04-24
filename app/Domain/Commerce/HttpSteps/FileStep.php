@@ -16,7 +16,9 @@ final class FileStep extends Step
 
         $filename = $this->helpFileCommerceService->saveFile($this->request);
 
-        if ((int)$this->request->header('Content-Length') !== self::FILE_LIMIT) {
+        $contentLength = (int)$this->request->header('Content-Length');
+
+        if ($contentLength !== self::FILE_LIMIT) {
             $this->helpFileCommerceService->unzip($filename);
         }
 
