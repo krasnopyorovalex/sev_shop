@@ -7,10 +7,10 @@ namespace Domain\Commerce\Factory;
 use App\Http\Requests\Request;
 use Domain\Commerce\HttpSteps\AuthStep;
 use Domain\Commerce\HttpSteps\FileStep;
+use Domain\Commerce\HttpSteps\ImportStep;
 use Domain\Commerce\HttpSteps\InitStep;
 use Domain\Commerce\HttpSteps\Step;
 use InvalidArgumentException;
-use Log;
 
 final class ImportSimpleFactory
 {
@@ -22,8 +22,6 @@ final class ImportSimpleFactory
     {
         $step = $request->get('mode');
 
-        Log::info($step);
-
         if ($step === 'checkauth') {
             return new AuthStep($request);
         }
@@ -34,6 +32,10 @@ final class ImportSimpleFactory
 
         if ($step === 'file') {
             return new FileStep($request);
+        }
+
+        if ($step === 'import') {
+            return new ImportStep($request);
         }
 
         throw new InvalidArgumentException('Unknown step given');

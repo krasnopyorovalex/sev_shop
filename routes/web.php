@@ -42,5 +42,5 @@ Route::group(['prefix' => '_root', 'middleware' => 'auth', 'namespace' => 'Admin
 //1c export\import
 Route::group(['prefix' => 'commerce', 'namespace' => 'Commerce', 'as' => 'commerce.'], static function () {
 
-    Route::any('handle', 'CommerceController')->name('handle');
+    Route::match(['get', 'post'], 'handle', 'CommerceController')->name('handle');
 });
