@@ -9,6 +9,7 @@ use Domain\Commerce\Services\HelpFileCommerceService;
 
 abstract class Step
 {
+    protected const FILE_LIMIT = 20480;
     /**
      * @var string
      */

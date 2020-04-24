@@ -14,9 +14,11 @@ final class FileStep extends Step
             throw new InvalidArgumentException('Bad user login or password given:(');
         }
 
-        \Log::info($this->request->headers);
+        $filename = $this->helpFileCommerceService->saveFile($this->request);
 
-        $this->helpFileCommerceService->saveFile($this->request);
+        if ((int)$this->request->header('Content-Length') !== self::FILE_LIMIT) {
+            $this->helpFileCommerceService->unzip($filename);
+        }
 
         $this->status = sprintf('%s', 'success');
     }
