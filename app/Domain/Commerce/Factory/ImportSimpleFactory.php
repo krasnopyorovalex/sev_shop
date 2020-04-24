@@ -17,12 +17,13 @@ final class ImportSimpleFactory
 {
     /**
      * @param Request $request
-     * @param HelpFileCommerceService $helpFileCommerceService
      * @return Step
      */
-    public static function factory(Request $request, HelpFileCommerceService $helpFileCommerceService): Step
+    public static function factory(Request $request): Step
     {
         $step = $request->get('mode');
+
+        $helpFileCommerceService = new HelpFileCommerceService;
 
         if ($step === 'checkauth') {
             return new AuthStep($request, $helpFileCommerceService);
