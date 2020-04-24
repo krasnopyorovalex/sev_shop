@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 namespace Domain\Commerce\HttpSteps;
+
 use InvalidArgumentException;
-use Storage;
 
 final class FileStep extends Step
 {
@@ -14,19 +14,9 @@ final class FileStep extends Step
             throw new InvalidArgumentException('Bad user login or password given:(');
         }
 
-        $files = Storage::allFiles(storage_path('app/public/1c_catalog'));
-        if ($files) {
-            Storage::delete($files);
-        }
+        $this->helpFileCommerceService->clearDirectory();
 
-        $filename = $this->request->get('filename');
-        $path = "public/1c_catalog/{$filename}";
-
-        $content = $this->request->getContent();
-
-        Storage::put($path, $content);
-
-        //file_put_contents($path, $content, FILE_APPEND);
+        $this->helpFileCommerceService->saveFile($this->request);
 
         $this->status = sprintf('%s', 'success');
     }
