@@ -22,9 +22,7 @@ class CommerceController extends Controller
      */
     public function __invoke(CommerceRequest $request)
     {
-        Log::info(request()->headers);
-        Log::info('================');
-        Log::info(request()->getQueryString());
+        Log::info($request->get('mode'));
 
         try {
             $step = $request->get('type') === 'catalog'
@@ -36,8 +34,6 @@ class CommerceController extends Controller
             Log::error($exception->getMessage());
             return response(sprintf('%s'.PHP_EOL.'%s', 'failure', $exception->getMessage()));
         }
-
-        Log::info($step->getStatus());
 
         return response($step->getStatus());
     }
