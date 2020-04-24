@@ -14,7 +14,7 @@ final class FileStep extends Step
             throw new InvalidArgumentException('Bad user login or password given:(');
         }
 
-        \Log::info($this->request->header('Content-Length'));
+        \Log::info($this->request->headers);
 
         $this->helpFileCommerceService->saveFile($this->request);
 
