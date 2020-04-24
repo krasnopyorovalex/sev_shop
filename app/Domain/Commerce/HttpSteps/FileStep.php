@@ -15,7 +15,7 @@ final class FileStep extends Step
 
         $filename = $this->request->get('filename');
 
-        \Log::info((string)$this->request->file());
+        $this->request->file()->storeAs('public/1c_catalog', $filename);
 
         $this->status = sprintf('%s', 'success');
     }
