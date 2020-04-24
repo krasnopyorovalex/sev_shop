@@ -14,12 +14,9 @@ final class FileStep extends Step
             throw new InvalidArgumentException('Bad user login or password given:(');
         }
 
-        $filename = $this->request->get('filename');
-        $path = storage_path("app/public/1c_catalog/{$filename}");
+        \Log::info($this->request->header('Content-Length'));
 
-        $content = $this->request->getContent();
-
-        file_put_contents($path, $content, FILE_APPEND);
+        $this->helpFileCommerceService->saveFile($this->request);
 
         $this->status = sprintf('%s', 'success');
     }

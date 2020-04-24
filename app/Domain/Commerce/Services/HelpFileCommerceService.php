@@ -15,8 +15,11 @@ class HelpFileCommerceService
     public function saveFile(Request $request): void
     {
         $filename = $request->get('filename');
+        $path = storage_path("app/public/1c_catalog/{$filename}");
+
         $content = $request->getContent();
-        Storage::put("public/1c_catalog/{$filename}", $content, FILE_APPEND);
+
+        file_put_contents($path, $content, FILE_APPEND);
     }
 
     public function clearDirectory(): void
