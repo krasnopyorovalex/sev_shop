@@ -14,6 +14,9 @@ final class FileStep extends Step
             throw new InvalidArgumentException('Bad user login or password given:(');
         }
 
+        $files = Storage::allFiles(storage_path('app/public/1c_catalog'));
+        Storage::delete($files);
+
         $filename = $this->request->get('filename');
         $path = storage_path("app/public/1c_catalog/{$filename}");
 
