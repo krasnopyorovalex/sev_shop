@@ -14,7 +14,7 @@ final class FileStep extends Step
             throw new InvalidArgumentException('Bad user login or password given:(');
         }
 
-        $this->helpFileCommerceService->clearDirectory();
+        //$this->helpFileCommerceService->clearDirectory();
 
         $this->helpFileCommerceService->saveFile($this->request);
 
