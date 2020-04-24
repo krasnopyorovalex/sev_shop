@@ -37,11 +37,9 @@ class HelpFileCommerceService
      */
     public function unzip(string $filename): void
     {
-        chmod(storage_path($filename), 0755);
-
         $zip = new ZipArchive();
 
-        if ($zip->open(storage_path($filename))) {
+        if ($zip->open(storage_path("app/public/1c_catalog/{$filename}"))) {
             $zip->extractTo(storage_path('app/public/1c_catalog'));
             $zip->close();
         }
