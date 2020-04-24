@@ -16,7 +16,7 @@ class HelpFileCommerceService
     {
         $filename = $request->get('filename');
         $content = $request->getContent();
-        Storage::put("public/1c_catalog/{$filename}", $content);
+        Storage::put("public/1c_catalog/{$filename}", $content, FILE_APPEND);
     }
 
     public function clearDirectory(): void
