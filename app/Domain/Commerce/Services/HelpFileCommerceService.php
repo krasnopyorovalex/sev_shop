@@ -39,11 +39,13 @@ class HelpFileCommerceService
     {
         $zip = new ZipArchive();
 
-        if ($zip->open(storage_path("app/public/1c_catalog/{$filename}"))) {
+        $fullPath = storage_path("app/public/1c_catalog/{$filename}");
+
+        if ($zip->open($fullPath)) {
             $zip->extractTo(storage_path('app/public/1c_catalog'));
             $zip->close();
         }
 
-        Storage::delete($filename);
+        Storage::delete($fullPath);
     }
 }
