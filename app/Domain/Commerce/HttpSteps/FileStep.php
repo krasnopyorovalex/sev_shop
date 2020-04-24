@@ -15,7 +15,7 @@ final class FileStep extends Step
 
         $filename = $this->request->get('filename');
 
-        \Log::info((string)$this->request->allFiles());
+        \Log::info((string)$this->request->file());
 
         $this->status = sprintf('%s', 'success');
     }
