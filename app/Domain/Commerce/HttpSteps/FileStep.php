@@ -15,10 +15,12 @@ final class FileStep extends Step
         }
 
         $files = Storage::allFiles(storage_path('app/public/1c_catalog'));
-        Storage::delete($files);
+        if ($files) {
+            Storage::delete($files);
+        }
 
         $filename = $this->request->get('filename');
-        $path = storage_path("app/public/1c_catalog/{$filename}");
+        $path = storage_path("1c_catalog/{$filename}");
 
         $content = $this->request->getContent();
 
