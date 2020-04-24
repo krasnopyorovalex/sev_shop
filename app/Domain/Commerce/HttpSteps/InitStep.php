@@ -15,7 +15,7 @@ final class InitStep extends Step
 
         $this->status = sprintf('%s' . PHP_EOL . '%s',
             'zip=yes',
-            'file_limit=204800'
+            'file_limit=25600' //204800
         );
     }
 }
