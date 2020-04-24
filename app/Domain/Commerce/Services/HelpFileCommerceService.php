@@ -37,7 +37,7 @@ class HelpFileCommerceService
      */
     public function unzip(string $filename): void
     {
-        chmod($filename, 0755);
+        chmod(storage_path($filename), 0755);
 
         $zip = new ZipArchive();
 
