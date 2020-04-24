@@ -14,7 +14,7 @@ final class FileStep extends Step
         }
 
         //$filename = $this->request->get('filename');
-        $path = public_path('public/1c_catalog');
+        $path = storage_path('app/public/1c_catalog');
 
         $content = $this->request->getContent();
 
