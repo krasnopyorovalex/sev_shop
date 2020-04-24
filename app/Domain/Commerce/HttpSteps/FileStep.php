@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Commerce\HttpSteps;
 use InvalidArgumentException;
+use Storage;
 
 final class FileStep extends Step
 {
@@ -18,7 +19,9 @@ final class FileStep extends Step
 
         $content = $this->request->getContent();
 
-        file_put_contents($path, $content, FILE_APPEND);
+        Storage::put($path, $content);
+
+        //file_put_contents($path, $content, FILE_APPEND);
 
         $this->status = sprintf('%s', 'success');
     }
