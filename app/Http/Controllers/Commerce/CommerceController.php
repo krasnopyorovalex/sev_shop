@@ -22,9 +22,9 @@ class CommerceController extends Controller
      */
     public function __invoke(CommerceRequest $request)
     {
-        Log::info($request->headers);
+        Log::info(request()->headers);
         Log::info('================');
-        Log::info($request->getQueryString());
+        Log::info(request()->getQueryString());
 
         try {
             $step = $request->get('type') === 'catalog'
