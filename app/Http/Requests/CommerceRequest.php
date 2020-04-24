@@ -18,8 +18,7 @@ class CommerceRequest extends Request
         return [
             'mode' => ['required', Rule::in(['checkauth', 'init', 'file', 'import'])],
             'type' => ['required', Rule::in(['catalog', 'sale'])],
-            'filename' => 'string|nullable',
-            'sessid' => 'string|nullable'
+            'filename' => 'string|nullable'
         ];
     }
 }
