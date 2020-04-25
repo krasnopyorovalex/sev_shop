@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use Domain\Commerce\Jobs\UnzipCommercemlJob;
 use Domain\Page\Queries\GetPageByAliasQuery;
 use App\Services\CanonicalService;
 use App\Services\TextParserService;
@@ -44,6 +45,7 @@ class PageController extends Controller
      */
     public function show(string $alias = 'index')
     {
+        //UnzipCommercemlJob::dispatch('');
         $page = $this->dispatch(new GetPageByAliasQuery($alias));
 
         $page->text = $this->parserService->parse($page);

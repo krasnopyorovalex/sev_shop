@@ -13,7 +13,7 @@ final class InitStep extends Step
             throw new InvalidArgumentException('Bad value cookie given:(');
         }
 
-        $this->helpFileCommerceService->clearDirectory();
+        //$this->helpFileCommerceService->clearDirectory();
 
         $this->status = sprintf('%s' . PHP_EOL . '%s',
             'zip=yes',

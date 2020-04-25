@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aac2ea752177d7dace993a03062f6a1b",
+    "content-hash": "e8a23b4bcedeb5e112f6f4f7fe953779",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -103,6 +103,57 @@
                 "math"
             ],
             "time": "2020-04-15T15:59:35+00:00"
+        },
+        {
+            "name": "carono/commerceml",
+            "version": "0.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/carono/php-commerceml.git",
+                "reference": "9d357db9912ab680bc3932ba7c77a6dbb53c8e42"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/carono/php-commerceml/zipball/9d357db9912ab680bc3932ba7c77a6dbb53c8e42",
+                "reference": "9d357db9912ab680bc3932ba7c77a6dbb53c8e42",
+                "shasum": ""
+            },
+            "require": {
+                "ext-simplexml": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Zenwalker\\CommerceML\\": "src/",
+                    "Zenwalker\\CommerceML\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maxim Poletaev",
+                    "email": "zenwalker2@gmail.com",
+                    "homepage": "http://zenwalker.ru"
+                },
+                {
+                    "name": "Aleksandr Kasyanov",
+                    "email": "info@carono.ru",
+                    "homepage": "http://carono.ru"
+                }
+            ],
+            "description": "Library for parsing CommerceML files",
+            "homepage": "https://github.com/zenwalker/php-commerceml",
+            "keywords": [
+                "1c",
+                "commerceml"
+            ],
+            "time": "2019-06-24T13:49:20+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
