@@ -17,6 +17,16 @@ Route::pattern('alias', '[\da-z-]+');
 
 Auth::routes();
 
+
+//Route::get('parser', static function () {
+//    //\Domain\Commerce\Jobs\ParseCommercemlJob::dispatch('import0_1.xml');
+//
+//    $parser = \Domain\Commerce\Factory\ParseCommercemlSimpleFactory::factory('import0_1.xml');
+//
+//    $parser->parse();
+//});
+
+
 Route::post('form/send-order', 'FormHandlerController@orderCheck')->name('order.check.send');
 Route::post('form/send-recall', 'FormHandlerController@recall')->name('recall.send');
 Route::get('search', 'SearchController')->name('search');

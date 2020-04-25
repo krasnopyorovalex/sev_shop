@@ -28,7 +28,7 @@ class CatalogProduct extends Model
     /**
      * @var array
      */
-    protected $fillable = ['catalog_id', 'price', 'name', 'title', 'description', 'text', 'alias', 'label', 'pos'];
+    protected $guarded = ['image'];
 
     /**
      * @return HasOne

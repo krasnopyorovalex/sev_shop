@@ -20,7 +20,7 @@ class Catalog extends Model
     /**
      * @var array
      */
-    protected $fillable = ['parent_id', 'name', 'title', 'description', 'text', 'alias', 'pos'];
+    protected $guarded = ['image'];
 
     /**
      * @return HasMany
