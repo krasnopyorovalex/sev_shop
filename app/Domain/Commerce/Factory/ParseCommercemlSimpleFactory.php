@@ -17,11 +17,11 @@ final class ParseCommercemlSimpleFactory
      */
     public static function factory(string $filename): CommercemlParser
     {
-        if (strpos('import', $filename) !== false) {
+        if (strpos($filename, 'import') !== false) {
             return new ImportCommercemlParser($filename);
         }
 
-        if (strpos('offer', $filename) !== false) {
+        if (strpos($filename, 'offer') !== false) {
             return new OfferCommercemlParser($filename);
         }
 
