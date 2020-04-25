@@ -13,6 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '_root/upload-ckeditor',
-        'commerce/handle'
+        'commerce/import',
+        'commerce/export'
     ];
 }
