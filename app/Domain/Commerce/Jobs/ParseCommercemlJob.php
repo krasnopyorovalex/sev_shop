@@ -37,6 +37,8 @@ class ParseCommercemlJob implements ShouldQueue
      */
     public function handle(): void
     {
-        ParseCommercemlSimpleFactory::factory($this->filename);
+        $parser = ParseCommercemlSimpleFactory::factory($this->filename);
+
+        $parser->parse();
     }
 }

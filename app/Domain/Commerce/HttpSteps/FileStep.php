@@ -41,6 +41,8 @@ final class FileStep extends Step
             UnzipCommercemlJob::dispatch($filename);
         }
 
+        \Log::info($filename);
+
         $this->status = sprintf('%s', 'success');
     }
 }
