@@ -15,6 +15,7 @@ class CreateCatalogProductsTable extends Migration
     {
         Schema::create('catalog_products', static function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->uuid('uuid');
             $table->unsignedBigInteger('catalog_id');
             $table->string('name', 512);
             $table->text('text')->nullable();
@@ -22,6 +23,7 @@ class CreateCatalogProductsTable extends Migration
             $table->string('label', 16)->nullable();
             $table->unsignedMediumInteger('price')->default(0);
             $table->unsignedSmallInteger('pos')->default(0);
+            $table->enum('in_store',[0,1])->default(1);
             $table->timestamps();
 
             $table->foreign('catalog_id')->references('id')->on('catalogs')->onDelete('cascade');

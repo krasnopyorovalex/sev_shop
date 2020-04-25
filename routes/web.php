@@ -18,13 +18,13 @@ Route::pattern('alias', '[\da-z-]+');
 Auth::routes();
 
 
-//Route::get('parser', static function () {
-//    //\Domain\Commerce\Jobs\ParseCommercemlJob::dispatch('import0_1.xml');
-//
-//    $parser = \Domain\Commerce\Factory\ParseCommercemlSimpleFactory::factory('import0_1.xml');
-//
-//    $parser->parse();
-//});
+Route::get('parser', static function () {
+    \Domain\Commerce\Jobs\ParseCommercemlJob::dispatch('import0_1.xml');
+
+    //$parser = \Domain\Commerce\Factory\ParseCommercemlSimpleFactory::factory('import0_1.xml');
+
+    //$parser->parse();
+});
 
 
 Route::post('form/send-order', 'FormHandlerController@orderCheck')->name('order.check.send');

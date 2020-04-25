@@ -6,6 +6,7 @@ namespace Domain\Commerce\Parsers;
 
 use App\Catalog;
 use App\CatalogProduct;
+use App\Image;
 use Illuminate\Support\Str;
 use SimpleXMLElement;
 use Zenwalker\CommerceML\CommerceML;
@@ -59,13 +60,31 @@ class ImportCommercemlParser extends CommercemlParser
                 $catalog = Catalog::where('uuid', $groupUuid)->first();
 
                 if ($catalog) {
-                    CatalogProduct::updateOrCreate(['uuid' => $catalogProduct->Ид], [
+                    $catalogProductNew = CatalogProduct::updateOrCreate(['uuid' => $catalogProduct->Ид], [
                         'catalog_id' => $catalog->id,
                         'uuid' => $catalogProduct->Ид,
                         'name' => $catalogProduct->Наименование,
                         'alias' => Str::slug($catalogProduct->Наименование),
-                        'text' => $catalogProduct->Описание ? "<p>{$catalogProduct->Описание}</p>" : null
+                        'text' => $catalogProduct->Описание ? "<p>{$catalogProduct->Описание}</p>" : null,
+                        'in_store' => 1
                     ]);
+
+                    if (isset($catalogProduct->Картинка)) {
+                        $image = is_array($catalogProduct->Картинка)
+                            ? $catalogProduct->Картинка[0]
+                            : $catalogProduct->Картинка;
+
+                        Image::updateOrCreate([
+                            'imageable_id' => $catalogProductNew->id,
+                            'imageable_type' => CatalogProduct::class
+                        ],[
+                            'path' => $image,
+                            'title' => $catalogProductNew->name,
+                            'alt' => $catalogProductNew->name,
+                            'imageable_id' => $catalogProductNew->id,
+                            'imageable_type' => CatalogProduct::class
+                        ]);
+                    }
                 }
             }
         }
