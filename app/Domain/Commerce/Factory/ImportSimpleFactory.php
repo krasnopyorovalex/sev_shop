@@ -10,6 +10,7 @@ use Domain\Commerce\HttpSteps\FileStep;
 use Domain\Commerce\HttpSteps\ImportStep;
 use Domain\Commerce\HttpSteps\InitStep;
 use Domain\Commerce\HttpSteps\Step;
+use Domain\Commerce\Services\HelpFileCommerceService;
 use InvalidArgumentException;
 
 final class ImportSimpleFactory
@@ -27,11 +28,11 @@ final class ImportSimpleFactory
         }
 
         if ($step === 'init') {
-            return new InitStep($request);
+            return new InitStep($request, new HelpFileCommerceService);
         }
 
         if ($step === 'file') {
-            return new FileStep($request);
+            return new FileStep($request, new HelpFileCommerceService);
         }
 
         if ($step === 'import') {
