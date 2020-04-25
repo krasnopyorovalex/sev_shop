@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Commerce\HttpSteps;
 
+use Domain\Commerce\Jobs\UnzipCommercemlJob;
 use InvalidArgumentException;
 
 final class FileStep extends Step
@@ -19,7 +20,7 @@ final class FileStep extends Step
         $contentLength = (int)$this->request->header('Content-Length');
 
         if ($contentLength !== self::FILE_LIMIT) {
-            $this->helpFileCommerceService->unzip($filename);
+            UnzipCommercemlJob::dispatch($filename);
         }
 
         $this->status = sprintf('%s', 'success');

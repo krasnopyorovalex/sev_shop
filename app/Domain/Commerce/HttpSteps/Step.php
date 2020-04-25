@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Domain\Commerce\HttpSteps;
 
 use App\Http\Requests\Request;
-use Domain\Commerce\Services\HelpFileCommerceService;
 
 abstract class Step
 {
@@ -29,19 +28,12 @@ abstract class Step
     protected $request;
 
     /**
-     * @var HelpFileCommerceService
-     */
-    protected $helpFileCommerceService;
-
-    /**
      * Step constructor.
      * @param Request $request
-     * @param HelpFileCommerceService $helpFileCommerceService
      */
-    public function __construct(Request $request, HelpFileCommerceService $helpFileCommerceService)
+    public function __construct(Request $request)
     {
         $this->request = $request;
-        $this->helpFileCommerceService = $helpFileCommerceService;
     }
 
     /**

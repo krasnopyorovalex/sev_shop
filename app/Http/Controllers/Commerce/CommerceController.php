@@ -6,7 +6,6 @@ namespace App\Http\Controllers\Commerce;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CommerceRequest;
-use Domain\Commerce\Factory\ExportSimpleFactory;
 use Domain\Commerce\Factory\ImportSimpleFactory;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
@@ -20,12 +19,10 @@ class CommerceController extends Controller
      * @param CommerceRequest $request
      * @return Application|ResponseFactory|Response
      */
-    public function __invoke(CommerceRequest $request)
+    public function import(CommerceRequest $request)
     {
         try {
-            $step = $request->get('type') === 'catalog'
-                ? ImportSimpleFactory::factory($request)
-                : ExportSimpleFactory::factory($request);
+            $step = ImportSimpleFactory::factory($request);
 
             $step->handle();
         } catch (Exception $exception) {

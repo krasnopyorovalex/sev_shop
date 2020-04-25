@@ -28,8 +28,8 @@ class HelpFileCommerceService
 
     public function clearDirectory(): void
     {
-        Storage::deleteDirectory('public/1c_catalog');
-        Storage::makeDirectory('public/1c_catalog');
+        $files = Storage::files('public/1c_catalog');
+        Storage::delete($files);
     }
 
     /**
@@ -46,6 +46,6 @@ class HelpFileCommerceService
             $zip->close();
         }
 
-        //Storage::delete("public/1c_catalog/{$filename}");
+        Storage::delete("public/1c_catalog/{$filename}");
     }
 }

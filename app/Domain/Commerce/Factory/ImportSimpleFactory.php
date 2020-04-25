@@ -10,7 +10,6 @@ use Domain\Commerce\HttpSteps\FileStep;
 use Domain\Commerce\HttpSteps\ImportStep;
 use Domain\Commerce\HttpSteps\InitStep;
 use Domain\Commerce\HttpSteps\Step;
-use Domain\Commerce\Services\HelpFileCommerceService;
 use InvalidArgumentException;
 
 final class ImportSimpleFactory
@@ -23,22 +22,20 @@ final class ImportSimpleFactory
     {
         $step = $request->get('mode');
 
-        $helpFileCommerceService = new HelpFileCommerceService;
-
         if ($step === 'checkauth') {
-            return new AuthStep($request, $helpFileCommerceService);
+            return new AuthStep($request);
         }
 
         if ($step === 'init') {
-            return new InitStep($request, $helpFileCommerceService);
+            return new InitStep($request);
         }
 
         if ($step === 'file') {
-            return new FileStep($request, $helpFileCommerceService);
+            return new FileStep($request);
         }
 
         if ($step === 'import') {
-            return new ImportStep($request, $helpFileCommerceService);
+            return new ImportStep($request);
         }
 
         throw new InvalidArgumentException('Unknown step given');
