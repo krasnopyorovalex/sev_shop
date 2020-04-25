@@ -54,17 +54,19 @@ class ImportCommercemlParser extends CommercemlParser
     {
         foreach ($catalogProducts as $catalogProduct) {
 
-            $groupUuid = $catalogProduct->Группы[0]->Ид;
-            $catalog = Catalog::where('uuid', $groupUuid)->first();
+            if ($catalogProduct->Группы[0]) {
+                $groupUuid = $catalogProduct->Группы[0]->Ид;
+                $catalog = Catalog::where('uuid', $groupUuid)->first();
 
-            if ($catalog) {
-                CatalogProduct::updateOrCreate(['uuid' => $catalogProduct->Ид], [
-                    'catalog_id' => $catalog->id,
-                    'uuid' => $catalogProduct->Ид,
-                    'name' => $catalogProduct->Наименование,
-                    'alias' => Str::slug($catalogProduct->Наименование),
-                    'text' => $catalogProduct->Описание ? "<p>{$catalogProduct->Описание}</p>" : null
-                ]);
+                if ($catalog) {
+                    CatalogProduct::updateOrCreate(['uuid' => $catalogProduct->Ид], [
+                        'catalog_id' => $catalog->id,
+                        'uuid' => $catalogProduct->Ид,
+                        'name' => $catalogProduct->Наименование,
+                        'alias' => Str::slug($catalogProduct->Наименование),
+                        'text' => $catalogProduct->Описание ? "<p>{$catalogProduct->Описание}</p>" : null
+                    ]);
+                }
             }
         }
     }
