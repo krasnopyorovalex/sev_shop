@@ -46,6 +46,6 @@ class HelpFileCommerceService
             $zip->close();
         }
 
-        Storage::delete("public/1c_catalog/{$filename}");
+        //Storage::delete("public/1c_catalog/{$filename}");
     }
 }
