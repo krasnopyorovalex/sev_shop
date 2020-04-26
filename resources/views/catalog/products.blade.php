@@ -28,24 +28,22 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <ul class="breadcrumbs" itemscope="" itemtype="http://schema.org/BreadcrumbList">
-                        <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem">
+                    <ul class="breadcrumbs">
+                        <li>
                             <a href="{{ route('page.show') }}">Главная</a>
-                            <meta itemprop="position" content="1">
                         </li>
-                        @if($catalog->parent->parent)
-                            <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem">
+                        @if($catalog->parent && $catalog->parent->parent)
+                            <li>
                                 <a href="{{ route('page.show', ['alias' => $catalog->parent->parent->alias]) }}">{{ $catalog->parent->parent->name }}</a>
-                                <meta itemprop="position" content="2">
                             </li>
                         @endif
-                        <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem">
+                        @if($catalog->parent)
+                        <li>
                             <a href="{{ route('page.show', ['alias' => $catalog->parent->alias]) }}">{{ $catalog->parent->name }}</a>
-                            <meta itemprop="position" content="{{ $catalog->parent->parent ? 3 : 2 }}">
                         </li>
-                        <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem">
+                        @endif
+                        <li>
                             {{ $catalog->name }}
-                            <meta itemprop="position" content="{{ $catalog->parent->parent ? 4 : 3 }}">
                         </li>
                     </ul>
                 </div>
@@ -72,7 +70,7 @@
                                 @if($product->image)
                                     <figure>
                                         <a href="{{ $product->url }}">
-                                            <img src="{{ $product->image->path }}" alt="{{ $product->image->alt ?: $product->name }}" title="{{ $product->image->title ?: $product->name }}">
+                                            <img src="{{ asset("storage/1c_catalog/{$product->image->path}") }}" alt="{{ $product->image->alt ?: $product->name }}" title="{{ $product->image->title ?: $product->name }}">
                                         </a>
                                     </figure>
                                 @endif

@@ -15,6 +15,7 @@ class CreateCatalogsTable extends Migration
     {
         Schema::create('catalogs', static function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->uuid('uuid');
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->string('name', 512);
             $table->string('title', 512);

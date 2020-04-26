@@ -22,7 +22,8 @@ class CreateArticlesTable extends Migration
             $table->text('text');
             $table->string('alias', 64)->unique();
             $table->enum('is_published',[0,1])->default(1);
-            $table->date('published_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            //$table->date('published_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->date('published_at')->default(now());
         });
     }
 
