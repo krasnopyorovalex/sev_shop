@@ -35,77 +35,15 @@
             </div>
 
             @if(count($items))
-            <div class="row">
-                <div class="col-8">
-                    <div class="cart-list">
-                        @foreach($items as $item)
-                            <div class="cart-list-item" data-product="{{ $item->id }}">
-                                <div class="cart-list-item-image">
-                                    @if($item->attributes->image)
-                                        <img src="{{ $item->attributes->image }}" alt="{{ $item->name }}" />
-                                    @endif
-                                </div>
-                                <div class="cart-list-item-name">
-                                    {{ $item->name }}
-                                    <span>150 г, Флоу-пак</span>
-                                </div>
-                                <div class="cart-list-item-single">
-                                    {{ number_format($item->price, 0, '.', ' ') }} <span>₽/шт.</span>
-                                </div>
-                                <div class="cart-list-item-quantity">
-                                    <div class="buy">
-                                        <form action="#">
-                                            <div class="buy-count">
-                                                <div class="buy-count-minus">-</div>
-                                                <input type="text" value="{{ $item->quantity }}" maxlength="3">
-                                                <div class="buy-count-plus">+</div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="cart-list-item-remove">
-                                    <div class="btn-remove" title="Удалить товар" data-product="{{ $item->id }}">
-                                        {{ svg('icon-trash') }}
-                                    </div>
-                                </div>
-                                <div class="cart-list-item-sum">
-                                    {{ number_format($item->quantity * $item->price, 0, '.', ' ') }} <span>₽</span>
-                                </div>
-                            </div>
-                        @endforeach
+                <div class="row">
+                    <div class="col-8">
+                        @include('cart.sections.cart-list')
+                    </div>
+                    <div class="col-4">
+                        @include('cart.sections.panel-info')
                     </div>
                 </div>
-                <div class="col-4">
-                    <div class="panel-info">
-                        <div class="panel-info-item">
-                            <div class="panel-info-item-label">
-                                Минимальная сумма заказа
-                            </div>
-                            <div class="panel-info-item-value">
-                                1 000 ₽
-                            </div>
-                        </div>
-                        <div class="panel-info-item">
-                            <div class="panel-info-item-label">
-                                Товаров
-                            </div>
-                            <div class="panel-info-item-value">
-                                3
-                            </div>
-                        </div>
-                        <div class="panel-info-item">
-                            <div class="panel-info-item-label">
-                                Сумма заказа
-                            </div>
-                            <div class="panel-info-item-value">
-                                <div class="total">
-                                    {{ $total }} <span>₽</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                @include('cart.sections.form-order')
             @endif
         </div>
     </main>
