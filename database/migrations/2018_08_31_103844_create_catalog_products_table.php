@@ -25,6 +25,7 @@ class CreateCatalogProductsTable extends Migration
             $table->unsignedSmallInteger('pos')->default(0);
             $table->enum('in_store',[0,1])->default(1);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('catalog_id')->references('id')->on('catalogs')->onDelete('cascade');
         });

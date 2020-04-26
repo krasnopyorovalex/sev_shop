@@ -16,7 +16,7 @@ class CommerceRequest extends Request
     public function rules(): array
     {
         return [
-            'mode' => ['required', Rule::in(['checkauth', 'init', 'file', 'import'])],
+            'mode' => ['required', Rule::in(['checkauth', 'init', 'file', 'import', 'query', 'success'])],
             'type' => ['required', Rule::in(['catalog', 'sale'])],
             'filename' => 'string|nullable'
         ];

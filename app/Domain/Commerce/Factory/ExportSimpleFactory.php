@@ -6,8 +6,10 @@ namespace Domain\Commerce\Factory;
 
 use App\Http\Requests\Request;
 use Domain\Commerce\HttpSteps\AuthStep;
-use Domain\Commerce\HttpSteps\InitStep;
+use Domain\Commerce\HttpSteps\InitExportStep;
+use Domain\Commerce\HttpSteps\QueryStep;
 use Domain\Commerce\HttpSteps\Step;
+use Domain\Commerce\HttpSteps\SuccessStep;
 use InvalidArgumentException;
 
 final class ExportSimpleFactory
@@ -25,7 +27,15 @@ final class ExportSimpleFactory
         }
 
         if ($step === 'init') {
-            return new InitStep($request);
+            return new InitExportStep($request);
+        }
+
+        if ($step === 'query') {
+            return new QueryStep($request);
+        }
+
+        if ($step === 'success') {
+            return new SuccessStep($request);
         }
 
         throw new InvalidArgumentException('Unknown step given');

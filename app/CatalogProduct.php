@@ -7,6 +7,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\HtmlString;
 
 /**
@@ -15,13 +16,15 @@ use Illuminate\Support\HtmlString;
  */
 class CatalogProduct extends Model
 {
-    use AutoAliasTrait;
+    use AutoAliasTrait, SoftDeletes;
 
     private const LABELS = [
         '' => 'Не выбрано',
         'info' => 'Акция!',
         'new' => 'Новинка!'
     ];
+
+    protected $perPage = 20;
 
     protected $with = ['catalog', 'image'];
 

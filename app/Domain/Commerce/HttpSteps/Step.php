@@ -28,6 +28,11 @@ abstract class Step
     protected $request;
 
     /**
+     * @var bool
+     */
+    protected $isXml = false;
+
+    /**
      * Step constructor.
      * @param Request $request
      */
@@ -42,6 +47,14 @@ abstract class Step
     public function getStatus(): string
     {
         return $this->status;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isXml(): bool
+    {
+        return $this->isXml;
     }
 
     /**

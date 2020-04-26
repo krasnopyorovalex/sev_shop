@@ -56,7 +56,7 @@
                 <div class="col-5">
                     @if($product->image)
                     <figure class="product_image">
-                        <img src="{{ $product->image->path }}" alt="{{ $product->image->alt ?: $product->name }}" title="{{ $product->image->title ?: $product->name }}">
+                        <img src="{{ asset("storage/1c_catalog/{$product->image->path}") }}" alt="{{ $product->image->alt ?: $product->name }}" title="{{ $product->image->title ?: $product->name }}">
                     </figure>
                     @endif
                 </div>
@@ -65,7 +65,7 @@
                         <div class="row">
                             <div class="col-4">
                                 <div class="product_price price">
-                                    45 <span>₽/шт.</span>
+                                    {{ $product->price }} <span>₽/шт.</span>
                                 </div>
                                 <div class="add-to-cart-box">
                                     <div class="buy">

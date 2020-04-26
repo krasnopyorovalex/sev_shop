@@ -19,11 +19,11 @@ Auth::routes();
 
 
 Route::get('parser', static function () {
-    \Domain\Commerce\Jobs\ParseCommercemlJob::dispatch('import0_1.xml');
+    //\Domain\Commerce\Jobs\ParseCommercemlJob::dispatch('import0_1.xml');
 
-    //$parser = \Domain\Commerce\Factory\ParseCommercemlSimpleFactory::factory('import0_1.xml');
+    $parser = \Domain\Commerce\Factory\ParseCommercemlSimpleFactory::factory('import0_1.xml');
 
-    //$parser->parse();
+    $parser->parse();
 });
 
 
