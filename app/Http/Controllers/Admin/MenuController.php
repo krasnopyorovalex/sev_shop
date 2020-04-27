@@ -64,7 +64,7 @@ class MenuController extends Controller
      * @param  int  $id
      * @return Application|Factory|Response|View
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         $menu = $this->dispatch(new GetMenuByIdQuery($id));
 
@@ -74,11 +74,11 @@ class MenuController extends Controller
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @param UpdateMenuRequest $request
      * @return RedirectResponse
      */
-    public function update($id, UpdateMenuRequest $request)
+    public function update(int $id, UpdateMenuRequest $request)
     {
         $this->dispatch(new UpdateMenuCommand($id, $request));
 
@@ -91,7 +91,7 @@ class MenuController extends Controller
      * @param  int  $id
      * @return Application|RedirectResponse|Response|Redirector
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->dispatch(new DeleteMenuCommand($id));
 

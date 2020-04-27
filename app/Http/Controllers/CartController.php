@@ -37,7 +37,7 @@ class CartController extends Controller
         return view('cart.index', [
             'page' => $page,
             'items' => $items,
-            'total' => number_format($total, 0, '.', ' ')
+            'total' => $total
         ]);
     }
 

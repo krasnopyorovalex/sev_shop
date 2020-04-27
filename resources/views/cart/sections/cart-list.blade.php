@@ -3,7 +3,7 @@
         <div class="cart-list-item" data-product="{{ $item->id }}">
             <div class="cart-list-item-image">
                 @if($item->attributes->image)
-                    <img src="{{ $item->attributes->image }}" alt="{{ $item->name }}" />
+                    <img src="{{ asset("storage/1c_catalog/{$item->attributes->image}") }}" alt="{{ $item->name }}" />
                 @endif
             </div>
             <div class="cart-list-item-name">

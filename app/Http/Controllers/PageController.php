@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Order;
 use Domain\Page\Queries\GetPageByAliasQuery;
 use App\Services\CanonicalService;
 use App\Services\TextParserService;
@@ -44,10 +43,6 @@ class PageController extends Controller
      */
     public function show(string $alias = 'index')
     {
-        $orders = Order::all();
-
-        //dd($orders);
-
         $page = $this->dispatch(new GetPageByAliasQuery($alias));
 
         $page->text = $this->parserService->parse($page);

@@ -60,7 +60,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="btn-submit">
-                            <button type="submit" class="btn">
+                            <button type="submit" class="btn" {{ (int)$total < 1000 ? 'disabled' : ''}}>
                                 Отправить заказ
                                 <svg class="icon">
                                     <use xlink:href="./img/symbols.svg#send"></use>
