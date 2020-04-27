@@ -11,7 +11,7 @@ abstract class Step
     /**
      * file limit size in bytes from 1c = 200kb
      */
-    protected const FILE_LIMIT = 20480;
+    protected const FILE_LIMIT = 204800;
     /**
      * @var string
      */

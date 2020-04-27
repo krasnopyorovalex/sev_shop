@@ -29,7 +29,13 @@ class HelpFileCommerceService
     public function clearDirectory(): void
     {
         $files = Storage::files('public/1c_catalog');
-        Storage::delete($files);
+        if ($files) {
+            foreach ($files as $file) {
+                if (strpos($file, '.zip') === false) {
+                    Storage::delete($file);
+                }
+            }
+        }
     }
 
     /**
