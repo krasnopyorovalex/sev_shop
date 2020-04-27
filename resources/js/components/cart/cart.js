@@ -1,4 +1,8 @@
+import CartRequests from "./cart-requests";
+
 document.addEventListener('DOMContentLoaded', () => {
+
+    const cartRequests = new CartRequests();
 
     const buyButtons = document.querySelectorAll('.buy button.btn');
     if (buyButtons.length) {
@@ -12,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 btn.classList.add('loading');
 
-                return axios.post(`cart/add/${productId}`)
+                return axios.post(`/cart/add/${productId}`)
                     .then(function (response) {
                         console.log(response);
                         btn.classList.remove('loading');
@@ -45,42 +49,52 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    const cartListPlusButtons = document.querySelectorAll('.cart-list .buy-count-plus');
-    const cartListMinusButtons = document.querySelectorAll('.cat-list .buy-count-minus');
+    const buyPlusButtons = document.querySelectorAll('.buy .buy-count-plus');
+    const buyMinusButtons = document.querySelectorAll('.buy .buy-count-minus');
+    const buyInputs = document.querySelectorAll('.buy input');
+    const buyForms = document.querySelectorAll('.buy form');
 
-    if (cartListPlusButtons.length && cartListMinusButtons.length) {
-        const cartListCountButtonsLength = cartListPlusButtons.length;
+    if (buyPlusButtons.length && buyMinusButtons.length) {
+        const cartListCountButtonsLength = buyPlusButtons.length;
+        const buyMinusButtonsLength = buyMinusButtons.length;
+        const buyInputsLength = buyInputs.length;
+        const buyFormsLength = buyForms.length;
+
+        const cacheValues = [];
+        for (let i = 0; i < buyInputsLength; i++) {
+            buyInputs[i].addEventListener("change", (event) => {
+                const intValue = parseInt(event.currentTarget.value);
+                const productId = event.currentTarget.closest('.s').getAttribute('data-product');
+
+                cacheValues[i] = intValue ? Math.abs(intValue) : cacheValues[i];
+                event.currentTarget.value = intValue ? Math.abs(intValue) : cacheValues[i];
+
+                return cartRequests.update()
+            });
+            cacheValues[i] = buyInputs[i].value;
+        }
 
         for (let i = 0; i < cartListCountButtonsLength; i++) {
-            cartListPlusButtons[i].addEventListener("click", (event) => {
-                //const btn = event.currentTarget;
-                console.log('clicked');
+            buyPlusButtons[i].addEventListener("click", (event) => {
+                const input = event.currentTarget.closest('form').querySelector('input');
+                input.value = parseInt(input.value) + 1;
+                cacheValues[i] = input.value;
             });
         }
-    }
 
-    // var buy = jQuery(".buy");
-    // if (buy.length) {
-    //     buy.on("click", ".buy-count-minus", function () {
-    //             var input = jQuery(this).next("input");
-    //             var value = parseInt(input.val()) > 1 ? parseInt(input.val()) - 1 : 1;
-    //
-    //             return input.val(value);
-    //     });
-    //     buy.on("click", ".buy-count-plus", function () {
-    //             var input = jQuery(this).prev("input");
-    //             var value = parseInt(input.val()) + 1;
-    //
-    //             return input.val(value);
-    //     });
-    //     buy.on("keyup", "input", function () {
-    //         return jQuery(this).val(jQuery(this).val().replace(/\D+/g,""));
-    //     });
-    //     buy.on("blur", "input", function () {
-    //         var intValue = parseInt(jQuery(this).val());
-    //         var value = intValue ? Math.abs(intValue) : 1;
-    //
-    //         return jQuery(this).val(value);
-    //     });
-    // }
+        for (let i = 0; i < buyMinusButtonsLength; i++) {
+            buyMinusButtons[i].addEventListener("click", (event) => {
+                const input = event.currentTarget.closest('form').querySelector('input');
+                input.value = parseInt(input.value) <= 1
+                    ? 1
+                    : parseInt(input.value) - 1;
+
+                cacheValues[i] = input.value;
+            });
+        }
+
+        for (let i = 0; i < buyFormsLength; i++) {
+            buyForms[i].addEventListener("submit", (event) => event.preventDefault());
+        }
+    }
 });

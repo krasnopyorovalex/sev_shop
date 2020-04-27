@@ -31,20 +31,31 @@ class ImportCommercemlParser extends CommercemlParser
 
     /**
      * @param SimpleXMLElement $groups
+     * @param null $parentId
      */
-    private function parseCatalog(SimpleXMLElement $groups)
+    private function parseCatalog(SimpleXMLElement $groups, $parentId = null)
     {
         foreach ($groups as $group) {
 
             $uuid = $group->Ид;
 
-            Catalog::updateOrCreate(['uuid' => $uuid], [
+            if ($parentId) {
+                $parentCatalog = Catalog::whereId($parentId)->first();
+                $parentId = $parentCatalog->id;
+            }
+
+            $catalog = Catalog::updateOrCreate(['uuid' => $uuid], [
                 'name' => $group->Наименование,
+                'parent_id' => $parentId,
                 'uuid' => $uuid,
                 'title' => "Магазин Севастополь {$group->Наименование}",
                 'description' => "Магазин Севастополь {$group->Наименование}. Выгодные цены, звоните по телефону +7(978) 852-79-33",
                 'alias' => Str::slug($group->Наименование)
             ]);
+
+            if ($group->Группы->Группа) {
+                $this->parseCatalog($group->Группы->Группа, $catalog->id);
+            }
         }
     }
 
@@ -60,11 +71,19 @@ class ImportCommercemlParser extends CommercemlParser
                 $catalog = Catalog::where('uuid', $groupUuid)->first();
 
                 if ($catalog) {
+
+                    $alias = Str::slug($catalogProduct->Наименование);
+
+                    $catalogProductExist = CatalogProduct::where('uuid', $catalogProduct->Ид)->first();
+                    if ($catalogProductExist) {
+                        $alias = Str::slug($catalog->name.'-'.$catalogProduct->Наименование);
+                    }
+
                     $catalogProductNew = CatalogProduct::updateOrCreate(['uuid' => $catalogProduct->Ид], [
                         'catalog_id' => $catalog->id,
                         'uuid' => $catalogProduct->Ид,
                         'name' => $catalogProduct->Наименование,
-                        'alias' => Str::slug($catalogProduct->Наименование),
+                        'alias' => $alias,
                         'text' => $catalogProduct->Описание ? "<p>{$catalogProduct->Описание}</p>" : null,
                         'in_store' => 1
                     ]);

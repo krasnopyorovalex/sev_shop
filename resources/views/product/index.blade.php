@@ -70,11 +70,6 @@
                                 <div class="add-to-cart-box">
                                     <div class="buy">
                                         <form action="#">
-                                            <div class="buy-count">
-                                                <div class="buy-count-minus">-</div>
-                                                <input type="text" value="1" maxlength="3">
-                                                <div class="buy-count-plus">+</div>
-                                            </div>
                                             <div class="buy-submit">
                                                 <button type="submit" class="btn" data-product="{{ $product->id }}">
                                                     В корзину

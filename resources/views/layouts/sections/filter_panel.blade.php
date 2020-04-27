@@ -1,57 +1,21 @@
+@if(count($catalog))
 <div class="left-category-menu">
     <ul class="not__decorated">
-        <li class="current">
-            <a href="#" class="active">Соки, вода, напитки</a>
+        @foreach($catalog as $catalogItem)
+        <li class="{{ is_current($catalogItem) ? 'current' : '' }}">
+            <a href="{{ $catalogItem->url }}" class="{{ is_current($catalogItem) ? 'active' : '' }}">{{ $catalogItem->name }}</a>
             <span class="icon-down">
-                                    <svg class="icon">
-                                        <use xlink:href="./img/symbols.svg#icon-cheveron-down"></use>
-                                    </svg>
-                                </span>
+                {{ svg('icon-cheveron-down') }}
+            </span>
+            @if(count($catalogItem->catalogs))
             <ul class="not__decorated">
-                <li><a href="#">Газированные напитки, лимонады</a></li>
-                <li><a href="#">Соки, Нектары, Смузи</a></li>
-                <li><a href="#">Энергетические напитки</a></li>
-                <li><a href="#">Вода питьевая и минеральная</a></li>
-                <li><a href="#">Холодный чай</a></li>
-                <li><a href="#">Спортивный напитки</a></li>
+                @foreach($catalogItem->catalogs as $catalogChild)
+                <li><a href="{{ $catalogChild->url }}">- {{ $catalogChild->name }}</a></li>
+                @endforeach
             </ul>
+            @endif
         </li>
-        <li>
-            <a href="#">Кондитерские изделия</a>
-            <span class="icon-down">
-                                    <svg class="icon">
-                                        <use xlink:href="./img/symbols.svg#icon-cheveron-down"></use>
-                                    </svg>
-                                </span>
-            <ul class="not__decorated">
-                <li><a href="#">Шоколад, батончики</a></li>
-                <li><a href="#">Печенье, пряники, крекеры</a></li>
-                <li><a href="#">Конфеты</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">Бакалея</a>
-            <span class="icon-down">
-                                    <svg class="icon">
-                                        <use xlink:href="./img/symbols.svg#icon-cheveron-down"></use>
-                                    </svg>
-                                </span>
-        </li>
-        <li>
-            <a href="#">Молочные продукты</a>
-            <span class="icon-down">
-                                    <svg class="icon">
-                                        <use xlink:href="./img/symbols.svg#icon-cheveron-down"></use>
-                                    </svg>
-                                </span>
-        </li>
-        <li>
-            <a href="#">Детское питание, уход</a>
-            <span class="icon-down">
-                                    <svg class="icon">
-                                        <use xlink:href="./img/symbols.svg#icon-cheveron-down"></use>
-                                    </svg>
-                                </span>
-        </li>
+        @endforeach
     </ul>
 </div>
+@endif

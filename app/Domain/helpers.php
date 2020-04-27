@@ -1,5 +1,6 @@
 <?php
 
+use App\Catalog;
 use Illuminate\Support\HtmlString;
 
 if (! function_exists('svg')) {
@@ -73,7 +74,6 @@ if (! function_exists('build_root_child_select')) {
     }
 }
 
-
 if (! function_exists('build_options')) {
     /**
      * @param array $array
@@ -97,5 +97,16 @@ if (! function_exists('build_options')) {
             }
         }
         return $html;
+    }
+}
+
+if (! function_exists('is_current')) {
+    function is_current(Catalog $catalog): bool
+    {
+        $urls = $catalog->catalogs->map(static function ($item) {
+            return $item->url;
+        });
+
+        return in_array(request()->fullUrl(), $urls->toArray(), true);
     }
 }

@@ -85,18 +85,16 @@
                                         </div>
                                     </div>
                                     <div class="buy">
-                                        <form action="#">
-                                            <div class="buy-count">
-                                                <div class="buy-count-minus">-</div>
-                                                <input type="text" value="1" maxlength="3">
-                                                <div class="buy-count-plus">+</div>
-                                            </div>
-                                            <div class="buy-submit">
-                                                <button type="submit" class="btn" data-product="{{ $product->id }}">
-                                                    В корзину
-                                                </button>
-                                            </div>
-                                        </form>
+                                        <div class="buy-submit">
+                                            <button type="submit" class="btn" data-product="{{ $product->id }}">
+                                                В корзину
+                                            </button>
+                                        </div>
+                                        <div class="buy-more">
+                                            <a href="{{ $product->url }}" class="btn">
+                                                Посмотреть
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                                 @if($product->label)

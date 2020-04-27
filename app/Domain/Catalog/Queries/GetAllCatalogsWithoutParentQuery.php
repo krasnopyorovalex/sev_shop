@@ -20,7 +20,7 @@ class GetAllCatalogsWithoutParentQuery
     public function handle()
     {
         if (! self::$cached) {
-            self::$cached = Catalog::with(['products','catalogs'])->where('parent_id', null)->orderBy('pos')->get();
+            self::$cached = Catalog::with(['products','catalogs', 'parent'])->where('parent_id', null)->orderBy('pos')->get();
         }
 
         return self::$cached;
