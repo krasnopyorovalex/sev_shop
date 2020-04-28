@@ -55,10 +55,10 @@ class SliderImageController extends Controller
 
     /**
      * @param CreateSliderImageRequest $request
-     * @param $slider
+     * @param int $slider
      * @return array
      */
-    public function store(CreateSliderImageRequest $request, $slider): array
+    public function store(CreateSliderImageRequest $request, int $slider): array
     {
         $image = $this->uploadSliderImagesService->setWidthThumb(250)->upload($request, 'slider', $slider);
         $this->dispatch(new CreateSliderImageCommand($image));
@@ -69,11 +69,11 @@ class SliderImageController extends Controller
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return string
      * @throws Throwable
      */
-    public function edit($id): string
+    public function edit(int $id): string
     {
         $image = $this->dispatch(new GetSliderImageByIdQuery($id));
 
@@ -83,12 +83,12 @@ class SliderImageController extends Controller
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @param UpdateSliderImageRequest $request
      * @return array
      * @throws Throwable
      */
-    public function update($id, UpdateSliderImageRequest $request): array
+    public function update(int $id, UpdateSliderImageRequest $request): array
     {
         $this->dispatch(new UpdateSliderImageCommand($id, $request));
 
@@ -104,10 +104,10 @@ class SliderImageController extends Controller
     }
 
     /**
-     * @param $id
-     * @return array
+     * @param int $id
+     * @return array|string[]
      */
-    public function destroy($id): array
+    public function destroy(int $id): array
     {
         $this->dispatch(new DeleteSliderImageCommand($id));
 
