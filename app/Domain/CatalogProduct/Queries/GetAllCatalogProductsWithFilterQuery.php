@@ -33,6 +33,9 @@ class GetAllCatalogProductsWithFilterQuery
      */
     public function handle()
     {
-        return CatalogProduct::whereCatalogId($this->catalog->id)->paginate();
+        return CatalogProduct::whereCatalogId($this->catalog->id)
+            ->whereInStore('1')
+            ->where('price', '>', 0)
+            ->paginate();
     }
 }

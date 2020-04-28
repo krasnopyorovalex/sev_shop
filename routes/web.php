@@ -28,7 +28,7 @@ Route::group(['prefix' => 'cart', 'as' => 'cart.'], static function () {
     Route::post('add/{product}', 'CartController@add')->name('add')->where('product', '[0-9]+');
     Route::post('remove/{product}', 'CartController@remove')->name('remove')->where('product', '[0-9]+');
     Route::post('update/{product}/{quantity}', 'CartController@update')->name('update')->where('product', '[0-9]+')->where(['quantity', '[0-9]+' ]);
-    Route::post('order', 'CartOrderController@order')->name('order');
+    Route::post('order', 'CartOrderController')->name('order');
 });
 
 Route::group(['middleware' => ['redirector']], static function () {

@@ -77,7 +77,7 @@
                                 <div class="catalog__items-info">
                                     <div class="name">
                                         <a href="{{ $product->url }}">{{ $product->name }}</a>
-                                        <span>150 г, Флоу-пак</span>
+{{--                                        <span>150 г, Флоу-пак</span>--}}
                                     </div>
                                     <div class="prices">
                                         <div class="price">

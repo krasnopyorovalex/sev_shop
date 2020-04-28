@@ -11,8 +11,8 @@
         <div class="panel-info-item-label">
             Товаров
         </div>
-        <div class="panel-info-item-value">
-            3
+        <div class="panel-info-item-value cart-list-item-quantity">
+            {{ $quantity }}
         </div>
     </div>
     <div class="panel-info-item">
@@ -21,7 +21,8 @@
         </div>
         <div class="panel-info-item-value">
             <div class="total">
-                {{ number_format($total, 0, '.', ' ') }} <span>₽</span>
+                <div class="total-value">{{ number_format($total, 0, '.', ' ') }}</div>
+                <span>₽</span>
             </div>
         </div>
     </div>

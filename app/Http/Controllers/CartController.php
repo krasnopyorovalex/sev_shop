@@ -33,11 +33,13 @@ class CartController extends Controller
         $page = $this->dispatch(new GetPageByAliasQuery($alias));
         $items = $this->dispatch(new GetAllItemsCartQuery());
         $total = $this->dispatch(new GetTotalPriceCartQuery());
+        $quantity = $this->dispatch(new GetTotalQuantityCartQuery());
 
         return view('cart.index', [
             'page' => $page,
             'items' => $items,
-            'total' => $total
+            'total' => $total,
+            'quantity' => $quantity
         ]);
     }
 
@@ -51,12 +53,11 @@ class CartController extends Controller
         $product = $this->dispatch(new GetCatalogProductByIdQuery($id));
 
         /** @var $response CartCollection */
-        $response = $this->dispatch(new AddToCartCommand($product));
+        $this->dispatch(new AddToCartCommand($product));
         $quantity = $this->dispatch(new GetTotalQuantityCartQuery());
 
         return [
-            'content' => $response->toJson(),
-            'message' => 'Товар добавлен в корзину',
+            'message' => (string)view('cart.message.cart-add-info', ['message' => 'Товар добавлен в корзину']),
             'quantity' => $quantity
         ];
     }

@@ -3,6 +3,9 @@ import CartRequests from "./cart-requests";
 document.addEventListener('DOMContentLoaded', () => {
 
     const cartRequests = new CartRequests();
+    const hCartCount = document.querySelector('header .h-cart-count');
+    const panelInfo = document.querySelector('.panel-info');
+    const formOrderBtn = document.querySelector('.form-order button[type=submit]');
 
     const buyButtons = document.querySelectorAll('.buy button.btn');
     if (buyButtons.length) {
@@ -16,15 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 btn.classList.add('loading');
 
-                return axios.post(`/cart/add/${productId}`)
-                    .then(function (response) {
-                        console.log(response);
-                        btn.classList.remove('loading');
-                    })
-                    .catch(function (error) {
-                        btn.classList.remove('loading');
-                        console.log(error);
-                    });
+                const boxBuy = event.currentTarget.closest('.buy');
+
+                return cartRequests.add(productId, btn, boxBuy, hCartCount);
             });
         }
     }
@@ -38,13 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const btn = event.currentTarget;
                 const productId = btn.getAttribute('data-product');
 
-                return axios.post(`cart/remove/${productId}`)
-                    .then(function () {
-                        return btn.closest('.cart-list-item').remove();
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                return cartRequests.remove(productId, btn, hCartCount, panelInfo);
             });
         }
     }
@@ -55,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const buyForms = document.querySelectorAll('.buy form');
 
     if (buyPlusButtons.length && buyMinusButtons.length) {
-        const cartListCountButtonsLength = buyPlusButtons.length;
+        const buyPlusButtonsLength = buyPlusButtons.length;
         const buyMinusButtonsLength = buyMinusButtons.length;
         const buyInputsLength = buyInputs.length;
         const buyFormsLength = buyForms.length;
@@ -64,32 +55,50 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < buyInputsLength; i++) {
             buyInputs[i].addEventListener("change", (event) => {
                 const intValue = parseInt(event.currentTarget.value);
-                const productId = event.currentTarget.closest('.s').getAttribute('data-product');
+                const cartListItem = event.currentTarget.closest('.cart-list-item');
 
-                cacheValues[i] = intValue ? Math.abs(intValue) : cacheValues[i];
                 event.currentTarget.value = intValue ? Math.abs(intValue) : cacheValues[i];
 
-                return cartRequests.update()
+                const valueToServer = event.currentTarget.value >= cacheValues[i]
+                    ? event.currentTarget.value - cacheValues[i]
+                    : (cacheValues[i] - event.currentTarget.value) * -1;
+
+                cacheValues[i] = intValue ? Math.abs(intValue) : cacheValues[i];
+
+                return cartRequests.update(cartListItem, valueToServer, hCartCount, panelInfo, formOrderBtn);
             });
             cacheValues[i] = buyInputs[i].value;
         }
 
-        for (let i = 0; i < cartListCountButtonsLength; i++) {
+        for (let i = 0; i < buyPlusButtonsLength; i++) {
             buyPlusButtons[i].addEventListener("click", (event) => {
                 const input = event.currentTarget.closest('form').querySelector('input');
+                const cartListItem = event.currentTarget.closest('.cart-list-item');
+
                 input.value = parseInt(input.value) + 1;
+
+                const valueToServer = input.value - cacheValues[i];
+
                 cacheValues[i] = input.value;
+
+                return cartRequests.update(cartListItem, valueToServer, hCartCount, panelInfo, formOrderBtn);
             });
         }
 
         for (let i = 0; i < buyMinusButtonsLength; i++) {
             buyMinusButtons[i].addEventListener("click", (event) => {
                 const input = event.currentTarget.closest('form').querySelector('input');
+                const cartListItem = event.currentTarget.closest('.cart-list-item');
+
                 input.value = parseInt(input.value) <= 1
                     ? 1
                     : parseInt(input.value) - 1;
 
+                const valueToServer = cacheValues[i] - input.value;
+
                 cacheValues[i] = input.value;
+
+                return cartRequests.update(cartListItem, valueToServer * -1, hCartCount, panelInfo, formOrderBtn);
             });
         }
 

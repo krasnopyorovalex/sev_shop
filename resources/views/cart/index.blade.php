@@ -34,6 +34,16 @@
                 </div>
             </div>
 
+            @if(session()->has('message'))
+                <div class="row">
+                    <div class="col-12">
+                        <div class="success-msg">
+                            {{ session('message') }}
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             @if(count($items))
                 <div class="row">
                     <div class="col-8">
@@ -43,6 +53,7 @@
                         @include('cart.sections.panel-info')
                     </div>
                 </div>
+                @include('layouts.partials.errors')
                 @include('cart.sections.form-order')
             @endif
         </div>

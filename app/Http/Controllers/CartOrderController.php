@@ -5,8 +5,13 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use Domain\Cart\Commands\ClearCartCommand;
-use App\Mail\CheckoutCartSent;
-use Domain\Cart\Requests\CheckoutCartRequest;
+use App\Mail\CartOrderSent;
+use Domain\Cart\Queries\GetTotalPriceCartQuery;
+use Domain\Cart\Requests\CartOrderRequest;
+use Domain\Order\Commands\CreateOrderCommand;
+use Exception;
+use Illuminate\Http\RedirectResponse;
+use Log;
 use Mail;
 
 /**
@@ -16,19 +21,25 @@ use Mail;
 class CartOrderController extends Controller
 {
     /**
-     * @param CheckoutCartRequest $request
-     * @return array
+     * @param CartOrderRequest $request
+     * @return RedirectResponse
      */
-    public function order(CheckoutCartRequest $request): array
+    public function __invoke(CartOrderRequest $request)
     {
-        Mail::to(['fabrikabani@mail.ru'])->send(new CheckoutCartSent($request->all()));
+        try {
+            Mail::to(['djShtaket88@mail.ru'])->send(new CartOrderSent($request->all()));
 
-        $this->dispatch(new ClearCartCommand);
+            $total = (int)$this->dispatch(new GetTotalPriceCartQuery());
 
-        return [
-            'message' => 'Ваша заявка отправлена успешно. Наш менеджер свяжется с Вами в ближайшее время',
-            'status' => 200,
-            'clear' => true
-        ];
+            $this->dispatch(new CreateOrderCommand($request, $total));
+
+            $this->dispatch(new ClearCartCommand);
+
+        } catch (Exception $exception) {
+            Log::error($exception->getMessage());
+            return back()->with('message', 'При оформлении заказа возникла ошибка:( Повторите, пожалуйста, позже.');
+        }
+
+        return back()->with('message', 'Ваш заказ принят и находится в обработке. Спасибо за покупку!');
     }
 }

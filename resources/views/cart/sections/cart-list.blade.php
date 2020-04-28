@@ -8,7 +8,7 @@
             </div>
             <div class="cart-list-item-name">
                 {{ $item->name }}
-                <span>150 г, Флоу-пак</span>
+{{--                <span>150 г, Флоу-пак</span>--}}
             </div>
             <div class="cart-list-item-single">
                 {{ number_format($item->price, 0, '.', ' ') }} <span>₽/шт.</span>
@@ -30,7 +30,8 @@
                 </div>
             </div>
             <div class="cart-list-item-sum">
-                {{ number_format($item->quantity * $item->price, 0, '.', ' ') }} <span>₽</span>
+                <div class="value">{{ number_format($item->quantity * $item->price, 0, '.', ' ') }}</div>
+                <span>₽</span>
             </div>
         </div>
     @endforeach

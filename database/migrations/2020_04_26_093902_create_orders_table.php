@@ -16,7 +16,8 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', static function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedMediumInteger('total');
-            $table->enum('is_new',[0,1])->default(1);
+            $table->text('comment');
+            $table->enum('status',['new', 'processed'])->default('new');
             $table->timestamps();
         });
     }

@@ -1,2 +1,2 @@
 require('./bootstrap');
-require('./components/cart');
+require('./components/cart/cart');

@@ -1,24 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Mail;
 
-use Domain\Catalog\Requests\CheckoutCartRequest;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
 /**
- * Class CheckoutCartSent
+ * Class CartOrderSent
  * @package App\Mail
  */
-class CheckoutCartSent extends Mailable
+class CartOrderSent extends Mailable
 {
     use Queueable, SerializesModels;
 
     private $data;
 
     /**
-     * OrderServiceSent constructor.
+     * CartOrderSent constructor.
      * @param $data
      */
     public function __construct($data)
@@ -27,13 +28,12 @@ class CheckoutCartSent extends Mailable
     }
 
     /**
-     * @return CheckoutCartSent
+     * @return CartOrderSent
      */
-    public function build(): CheckoutCartSent
+    public function build(): CartOrderSent
     {
-        return $this->from('bani.crimea@yandex.ru')
-            ->subject('Форма: Оформление заказа')
-            ->view('emails.checkout_cart', [
+        return $this->subject('Форма: Оформление заказа на сайте')
+            ->view('emails.cart-order', [
                 'data' => $this->data
             ]);
     }
