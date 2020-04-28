@@ -22,7 +22,7 @@
             <tr>
                 <td>
                     @if($item->attributes->image)
-                        <img style="display: inline-block; vertical-align: middle;" src="{{ config('app.url') }}{{ $item->attributes->image }}" alt="" width="146" height="132"/>
+                        <img style="display: inline-block; vertical-align: middle;" src="{{ asset("storage/1c_catalog/{$product->image->path}") }}" alt="" width="146" height="132"/>
                     @endif
                     <a style="display: inline-block; vertical-align: middle;" href="{{ $item->attributes->url }}">{{ $item->name }}</a>
                 </td>
