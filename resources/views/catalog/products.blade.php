@@ -85,15 +85,15 @@
                                         </div>
                                     </div>
                                     <div class="buy">
-                                        <div class="buy-submit">
-                                            <button type="submit" class="btn" data-product="{{ $product->id }}">
-                                                В корзину
-                                            </button>
-                                        </div>
                                         <div class="buy-more">
                                             <a href="{{ $product->url }}" class="btn">
                                                 Посмотреть
                                             </a>
+                                        </div>
+                                        <div class="buy-submit">
+                                            <button type="submit" class="btn" data-product="{{ $product->id }}">
+                                                В корзину
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
