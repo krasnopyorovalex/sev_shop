@@ -64,7 +64,7 @@ class SliderController extends Controller
      * @param  int  $id
      * @return Application|Factory|Response|View
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         $slider = $this->dispatch(new GetSliderByIdQuery($id));
 
@@ -74,11 +74,11 @@ class SliderController extends Controller
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @param UpdateSliderImageRequest $request
      * @return RedirectResponse
      */
-    public function update($id, UpdateSliderImageRequest $request): RedirectResponse
+    public function update(int $id, UpdateSliderImageRequest $request): RedirectResponse
     {
         $this->dispatch(new UpdateSliderCommand($id, $request));
 
@@ -91,7 +91,7 @@ class SliderController extends Controller
      * @param  int  $id
      * @return Application|RedirectResponse|Response|Redirector
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->dispatch(new DeleteSliderCommand($id));
 
