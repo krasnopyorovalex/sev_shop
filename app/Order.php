@@ -21,6 +21,11 @@ class Order extends Model
      */
     public function catalogProducts(): BelongsToMany
     {
-        return $this->belongsToMany(CatalogProduct::class, 'order_catalog_products')->using(OrderCatalogProduct::class);
+        return $this->belongsToMany(CatalogProduct::class, 'order_catalog_products')
+            ->using(OrderCatalogProduct::class)
+            ->withPivot([
+                'total',
+                'quantity',
+            ]);
     }
 }

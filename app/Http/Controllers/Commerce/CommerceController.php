@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CommerceRequest;
 use Domain\Commerce\Factory\ExportSimpleFactory;
 use Domain\Commerce\Factory\ImportSimpleFactory;
+use Domain\Order\Queries\GetActualOrdersQuery;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -51,7 +52,7 @@ class CommerceController extends Controller
 
         return $step->isXml()
             ? response()->view('commerceml.index', [
-                'orders' => []
+                'orders' => $this->dispatch(new GetActualOrdersQuery)
             ])->header('Content-Type', 'text/xml') : response($step->getStatus());
     }
 }

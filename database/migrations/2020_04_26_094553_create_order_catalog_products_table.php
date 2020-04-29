@@ -17,6 +17,9 @@ class CreateOrderCatalogProductsTable extends Migration
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('catalog_product_id');
 
+            $table->unsignedMediumInteger('total');
+            $table->unsignedSmallInteger('quantity');
+
             $table->primary(['order_id', 'catalog_product_id'], 'pmc_orders_catalog_products');
 
             $table->index(['order_id']);

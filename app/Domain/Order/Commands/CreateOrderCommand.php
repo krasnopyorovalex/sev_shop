@@ -6,6 +6,7 @@ namespace Domain\Order\Commands;
 
 use App\Http\Requests\Request;
 use App\Order;
+use App\OrderCatalogProduct;
 
 /**
  * Class CreateOrderCommand
@@ -44,7 +45,12 @@ class CreateOrderCommand
 
         $order->save();
 
-        $catalogProduct = array_keys(app('cart')->getContent()->toArray());
+        $catalogProduct = app('cart')->getContent()->map(static function ($item) {
+            return new OrderCatalogProduct([
+                'total' => $item->quantity * $item->price,
+                'quantity' => $item->quantity
+            ]);
+        });
 
         $order->catalogProducts()->attach($catalogProduct);
 

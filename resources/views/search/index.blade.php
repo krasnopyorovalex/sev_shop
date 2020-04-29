@@ -1,24 +1,23 @@
 @extends('layouts.app')
 
-@section('title', $catalog->title)
-@section('description', $catalog->description)
+@section('title', 'Результаты поиска')
+@section('description', 'На данной странице представлены результаты поиска')
 @push('og')
-    <meta property="og:title" content="{{ $catalog->title }}">
+    <meta property="og:title" content="Результаты поиска">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request()->getUri() }}">
-    <meta property="og:image" content="{{ asset($catalog->image ? $catalog->image->path : 'img/logo.png') }}">
-    <meta property="og:description" content="{{ $catalog->description }}">
+    <meta property="og:image" content="{{ asset('img/logo.png') }}">
+    <meta property="og:description" content="На данной странице представлены результаты поиска">
     <meta property="og:site_name" content="Магазин Севастополь">
     <meta property="og:locale" content="ru_RU">
 @endpush
 
 @section('content')
-    @includeWhen($catalog->slider, 'layouts.sections.slider', ['slider' => $catalog->slider])
     <section class="title__section">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h1>{{ $catalog->name }}</h1>
+                    <h1>Результаты поиска</h1>
                 </div>
             </div>
         </div>
@@ -32,18 +31,8 @@
                         <li>
                             <a href="{{ route('page.show') }}">Главная</a>
                         </li>
-                        @if($catalog->parent && $catalog->parent->parent)
-                            <li>
-                                <a href="{{ route('page.show', ['alias' => $catalog->parent->parent->alias]) }}">{{ $catalog->parent->parent->name }}</a>
-                            </li>
-                        @endif
-                        @if($catalog->parent)
                         <li>
-                            <a href="{{ route('page.show', ['alias' => $catalog->parent->alias]) }}">{{ $catalog->parent->name }}</a>
-                        </li>
-                        @endif
-                        <li>
-                            {{ $catalog->name }}
+                            Результаты поиска
                         </li>
                     </ul>
                 </div>
@@ -67,7 +56,7 @@
                                 <div class="catalog__items-info">
                                     <div class="name">
                                         <a href="{{ $product->url }}">{{ $product->name }}</a>
-{{--                                        <span>150 г, Флоу-пак</span>--}}
+                                        {{--                                        <span>150 г, Флоу-пак</span>--}}
                                     </div>
                                     <div class="prices">
                                         <div class="price">

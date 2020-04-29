@@ -34,6 +34,6 @@ class SearchController extends Controller
     {
         $catalogProducts = $this->searchService->search($request->keyword);
 
-        return view('page.search', ['catalogProducts' => $catalogProducts]);
+        return view('search.index', ['products' => $catalogProducts]);
     }
 }
