@@ -84,7 +84,9 @@
 
                     </div>
                     <div class="pagination">
-                        {{ $products->onEachSide(3)->links() }}
+                        {{ $products->appends([
+                            'keyword' => request('keyword')
+                        ])->onEachSide(3)->links() }}
                     </div>
                 </div>
             </div>
