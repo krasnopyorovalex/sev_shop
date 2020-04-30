@@ -41,6 +41,7 @@ class CommerceController extends Controller
      */
     public function export(CommerceRequest $request)
     {
+        \Log::info($request->get('mode'));
         try {
             $step = ExportSimpleFactory::factory($request);
 
