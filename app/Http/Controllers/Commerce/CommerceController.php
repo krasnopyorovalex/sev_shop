@@ -41,7 +41,6 @@ class CommerceController extends Controller
      */
     public function export(CommerceRequest $request)
     {
-        \Log::info($request->get('mode'));
         try {
             $step = ExportSimpleFactory::factory($request);
 
@@ -51,9 +50,12 @@ class CommerceController extends Controller
             return response(sprintf('%s'.PHP_EOL.'%s', 'failure', $exception->getMessage()));
         }
 
+        \Log::info('Mode: '.$request->get('mode') . ', isXml: ' . $step->isXml());
+
         return $step->isXml()
             ? response()->view('commerceml.index', [
                 'orders' => $this->dispatch(new GetActualOrdersQuery)
-            ])->header('Content-Type', 'text/xml') : response($step->getStatus());
+            ])->header('Content-Type', 'text/xml')
+            : response($step->getStatus());
     }
 }
