@@ -1,4 +1,3 @@
-@if(count($orders))
 {!! '<'.'?xml version="1.0" encoding="UTF-8"?>' !!}
 <КоммерческаяИнформация xmlns="urn:1C.ru:commerceml_2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ВерсияСхемы="2.07" ДатаФормирования="{{ date('Y-m-d\TH:i:s') }}">
     @foreach($orders as $order)
@@ -56,4 +55,3 @@
     </Документ>
     @endforeach
 </КоммерческаяИнформация>
-@endif
