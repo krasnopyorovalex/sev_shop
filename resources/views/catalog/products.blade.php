@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', $catalog->title)
-@section('description', $catalog->description)
+@section('title', "Доставка {$catalog->name} на дом в Севастополе")
+@section('description', "Мы предлагаем вам заказать онлайн и доставить на дом товары из категории: {$catalog->name} в Севастополе. Бесплатно при заказе от 1000 р, звоните сейчас: +7 (978) 852-79-33")
 @push('og')
     <meta property="og:title" content="{{ $catalog->title }}">
     <meta property="og:type" content="website">
@@ -57,13 +57,11 @@
                     <div class="catalog__items">
                         @foreach($products as $product)
                             <div class="catalog__items-item">
-                                @if($product->image)
-                                    <figure>
-                                        <a href="{{ $product->url }}">
-                                            <img src="{{ asset("storage/1c_catalog/{$product->image->path}") }}" alt="{{ $product->image->alt ?: $product->name }}" title="{{ $product->image->title ?: $product->name }}">
-                                        </a>
-                                    </figure>
-                                @endif
+                                <figure>
+                                    <a href="{{ $product->url }}">
+                                        <img src="{{ $product->image ? asset("storage/1c_catalog/{$product->image->path}") : asset('img/default-product.png') }}" alt="{{ $product->image ? $product->image->alt  : $product->name }}" title="{{ $product->image ? $product->image->title : $product->name }}">
+                                    </a>
+                                </figure>
                                 <div class="catalog__items-info">
                                     <div class="name">
                                         <a href="{{ $product->url }}">{{ $product->name }}</a>

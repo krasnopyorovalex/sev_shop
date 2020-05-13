@@ -14,8 +14,6 @@ class CreateCatalogRequest extends Request
     {
         return [
             'name' => 'bail|required|string|max:512',
-            'title' => 'required|string|max:512',
-            'description' => 'max:512|nullable',
             'text' => 'string|nullable',
             'alias' => 'required|string|max:255|unique:catalogs',
             'parent_id' => 'numeric|exists:catalogs,id|nullable',
@@ -33,7 +31,6 @@ class CreateCatalogRequest extends Request
     {
         return [
             'name.required' => 'Поле «Название» обязательно для заполнения',
-            'title.required' => 'Поле «Title» обязательно для заполнения',
             'text.required' => 'Поле «Текст» обязательно для заполнения',
             'alias.required' => 'Поле «Alias» обязательно для заполнения',
             'alias.unique' => 'Значение поля «Alias» уже присутствует в базе данных',

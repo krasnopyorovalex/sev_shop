@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', "{$product->name} | {$product->catalog->name}")
-@section('description', 'В нашем магазине всегда свежие продукты. Звоните и покупайте сейчас: +7 (978) 852-79-33')
+@section('title', "Доставка {$product->name} онлайн на дом в Севастополе")
+@section('description', "Онлайн доставка товара {$product->name} в Севастополе. Привезём бесплатно при заказе от 1000 р, звоните нам: +7 (978) 852-79-33")
 @push('og')
     <meta property="og:title" content="{{ $product->title }}">
     <meta property="og:type" content="website">
@@ -54,11 +54,9 @@
             </div>
             <div class="row">
                 <div class="col-5">
-                    @if($product->image)
                     <figure class="product_image">
-                        <img src="{{ asset("storage/1c_catalog/{$product->image->path}") }}" alt="{{ $product->image->alt ?: $product->name }}" title="{{ $product->image->title ?: $product->name }}">
+                        <img src="{{ $product->image ? asset("storage/1c_catalog/{$product->image->path}") : asset('img/default-product.png') }}" alt="{{ $product->image ? $product->image->alt  : $product->name }}" title="{{ $product->image ? $product->image->title : $product->name }}">
                     </figure>
-                    @endif
                 </div>
                 <div class="col-7">
                     <div class="product__text">

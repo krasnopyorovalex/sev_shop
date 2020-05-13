@@ -18,8 +18,6 @@ class CreateCatalogsTable extends Migration
             $table->uuid('uuid');
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->string('name', 512);
-            $table->string('title', 512);
-            $table->string('description', 512)->nullable();
             $table->text('text')->nullable();
             $table->string('alias', 255)->unique();
             $table->unsignedTinyInteger('pos')->default(0);

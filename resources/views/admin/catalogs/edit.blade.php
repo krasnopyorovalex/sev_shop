@@ -36,8 +36,6 @@
                             </div>
 
                             @input(['name' => 'name', 'label' => 'Название', 'entity' => $catalog])
-                            @input(['name' => 'title', 'label' => 'Title', 'entity' => $catalog])
-                            @input(['name' => 'description', 'label' => 'Description', 'entity' => $catalog])
 
                             @input(['name' => 'alias', 'label' => 'Alias', 'entity' => $catalog])
                             @textarea(['name' => 'text', 'label' => 'Текст', 'entity' => $catalog])

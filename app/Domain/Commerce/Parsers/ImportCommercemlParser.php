@@ -48,8 +48,6 @@ class ImportCommercemlParser extends CommercemlParser
                 'name' => $group->Наименование,
                 'parent_id' => $parentId,
                 'uuid' => $uuid,
-                'title' => "Магазин Севастополь {$group->Наименование}",
-                'description' => "Магазин Севастополь {$group->Наименование}. Выгодные цены, звоните по телефону +7(978) 852-79-33",
                 'alias' => Str::slug($group->Наименование)
             ]);
 
