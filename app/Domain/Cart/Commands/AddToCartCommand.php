@@ -42,7 +42,7 @@ class AddToCartCommand
     public function handle(): CartCollection
     {
         app('cart')->add($this->product->id, $this->product->name, $this->product->price, $this->count, [
-            'image' => $this->product->image ? $this->product->image->path : asset('img/default-product.png'),
+            'image' => $this->product->image ? $this->product->image->path : false,
             'url' => $this->product->url
         ]);
 
