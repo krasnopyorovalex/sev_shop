@@ -1,4 +1,4 @@
-<form action="{{ route('order.check.send') }}" class="form__order" id="check__order-recall" method="post">
+<form action="{{ route('consultation.send') }}" class="form__order" id="check__order-recall" method="post">
     @csrf
     <input type="hidden" name="product" value="{{ isset($product) ? $product->name : '' }}">
     <div class="close__box" title="Закрыть форму">

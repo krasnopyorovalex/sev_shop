@@ -68,7 +68,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return Application|Factory|Response|View
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         $article = $this->dispatch(new GetArticleByIdQuery($id));
 
@@ -82,7 +82,7 @@ class ArticleController extends Controller
      * @param UpdateArticleRequest $request
      * @return RedirectResponse|Redirector
      */
-    public function update($id, UpdateArticleRequest $request)
+    public function update(int $id, UpdateArticleRequest $request)
     {
         $this->dispatch(new UpdateArticleCommand($id, $request));
 
@@ -95,7 +95,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return Application|RedirectResponse|Response|Redirector
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->dispatch(new DeleteArticleCommand($id));
 

@@ -12,7 +12,7 @@
                                 <div class="name">{{ $image->name }}</div>
                                 <div class="desc">{{ $image->desc }}</div>
                                 <a class="btn" href="{{ $image->link }}">
-                                    Подробнее
+                                    Смотреть товары
                                     {{ svg('arrow') }}
                                 </a>
                             </div>

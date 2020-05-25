@@ -27,7 +27,8 @@ class CartOrderController extends Controller
     public function __invoke(CartOrderRequest $request)
     {
         try {
-            Mail::to(['djShtaket88@mail.ru'])->send(new CartOrderSent($request->all()));
+            Mail::to(explode(',', env('MAIL_TO')))
+                ->send(new CartOrderSent($request->validated()));
 
             $total = (int)$this->dispatch(new GetTotalPriceCartQuery());
 

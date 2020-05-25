@@ -4,6 +4,7 @@
 /storage/*.key
 /vendor
 /.idea
+/nginx
 /config/debugbar.php
 .env
 .env.backup

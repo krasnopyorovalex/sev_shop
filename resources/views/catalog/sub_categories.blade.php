@@ -28,7 +28,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    @include('layouts.partials.breadcrumbs', ['page' => $catalog, 'parent' => $catalog->parent])
+                    <ul class="breadcrumbs">
+                        <li>
+                            <a href="{{ route('page.show') }}">Главная</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('page.show', ['alias' => 'catalog']) }}">Каталог</a>
+                        </li>
+                        <li>
+                            {{ $catalog->name }}
+                        </li>
+                    </ul>
                 </div>
             </div>
             @include('layouts.shortcodes.catalog', ['catalog' => $catalog->catalogs])

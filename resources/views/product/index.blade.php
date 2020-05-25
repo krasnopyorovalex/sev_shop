@@ -31,6 +31,9 @@
                         <li>
                             <a href="{{ route('page.show') }}">Главная</a>
                         </li>
+                        <li>
+                            <a href="{{ route('page.show', ['alias' => 'catalog']) }}">Каталог</a>
+                        </li>
                         @isset($product->catalog->parent->parent)
                             <li>
                                 <a href="{{ route('page.show', ['alias' => $product->catalog->parent->parent->alias]) }}">{{ $product->catalog->parent->parent->name }}</a>

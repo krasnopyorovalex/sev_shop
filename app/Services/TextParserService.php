@@ -27,10 +27,10 @@ class TextParserService
     {
         return preg_replace_callback_array(
             [
-                '#(<p(.*)>)?{articles}(<\/p>)?#' => function () {
+                '#(<p(.*)>)?{blog}(<\/p>)?#' => function () {
                     $articles = $this->dispatch(new GetAllArticlesQuery(true, self::PAGINATE_LIMIT));
 
-                    return view('layouts.shortcodes.articles', ['articles' => $articles]);
+                    return view('layouts.shortcodes.blog', ['articles' => $articles]);
                 },
                 '#(<p(.*)>)?{catalog}(<\/p>)?#' => function () {
                     $catalogs = $this->dispatch(new GetAllCatalogsWithoutParentQuery());

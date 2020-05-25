@@ -34,7 +34,7 @@ class UpdatePositionsSliderImageCommand
 
         if (is_array($data)) {
             foreach ($data as $position => $imageId) {
-                $image = $this->dispatch(new GetSliderImageByIdQuery($imageId));
+                $image = $this->dispatch(new GetSliderImageByIdQuery((int) $imageId));
                 $image->pos = $position;
                 $image->update();
             }

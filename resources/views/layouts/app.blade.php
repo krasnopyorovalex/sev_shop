@@ -25,7 +25,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-7">
+                    <div class="col-6">
                         <div class="address">
                             <span class="box_rounded">
                                 {{ svg('map') }}
@@ -41,7 +41,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-2">
+                    <div class="col-3">
                         <div class="search__socials-icons">
                             <div class="btn call__popup" data-target="popup__recall">
                                 Перезвонить Вам?

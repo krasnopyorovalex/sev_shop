@@ -1,0 +1,2 @@
+2020/05/25 10:08:33 [crit] 11171#0: *6 open() "/var/lib/nginx/tmp/client_body/0000000001" failed (13: Permission denied), client: 127.0.0.1, server: sevshop.ld, request: "POST /_root/articles/1 HTTP/1.1", host: "sevshop.ld", referrer: "http://sevshop.ld/_root/articles/1/edit"
+2020/05/25 10:11:31 [crit] 11171#0: *15 open() "/var/lib/nginx/tmp/client_body/0000000002" failed (13: Permission denied), client: 127.0.0.1, server: sevshop.ld, request: "POST /_root/articles/1 HTTP/1.1", host: "sevshop.ld", referrer: "http://sevshop.ld/_root/articles/1/edit"

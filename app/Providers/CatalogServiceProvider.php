@@ -19,6 +19,11 @@ class CatalogServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->make('view')->composer(['layouts.sections.catalog', 'layouts.partials.categories_menu', 'layouts.sections.filter_panel'], CatalogComposer::class);
+        $this->app->make('view')->composer([
+            'layouts.sections.catalog',
+            'layouts.partials.categories_menu',
+            'layouts.sections.filter_panel',
+            'page.categories'
+        ], CatalogComposer::class);
     }
 }

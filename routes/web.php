@@ -17,7 +17,7 @@ Route::pattern('alias', '[\da-z-]+');
 
 Auth::routes();
 
-Route::post('form/send-order', 'FormHandlerController@orderCheck')->name('order.check.send');
+Route::post('form/consultation-send', 'FormHandlerController@consultation')->name('consultation.send');
 Route::post('form/send-recall', 'FormHandlerController@recall')->name('recall.send');
 Route::get('search', 'SearchController')->name('search');
 Route::get('sitemap.xml', 'SitemapController@xml')->name('sitemap.xml');
@@ -32,9 +32,10 @@ Route::group(['prefix' => 'cart', 'as' => 'cart.'], static function () {
 });
 
 Route::group(['middleware' => ['redirector']], static function () {
-    Route::get('{alias}', 'CatalogController@show')->name('catalog.show');
     Route::get('/{alias?}/{page?}', 'PageController@show')->name('page.show')->where('page', '[0-9]+');
+    Route::get('catalog/{alias}', 'CatalogController@show')->name('catalog.show');
     Route::get('product/{alias}', 'CatalogProductController@show')->name('catalog_product.show');
+    Route::get('blog/{alias}', 'BlogController@show')->name('article.show');
 });
 
 Route::group(['prefix' => '_root', 'middleware' => 'auth', 'namespace' => 'Admin', 'as' => 'admin.'], static function () {

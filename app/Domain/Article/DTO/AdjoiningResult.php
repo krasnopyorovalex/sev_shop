@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class AdjoiningResult
- * @package Domain\Article\DTO
+ * @package App\Domain\Article\DTO
  */
 class AdjoiningResult
 {
