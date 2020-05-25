@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', "Доставка {$product->name} онлайн на дом в Севастополе")
+@section('title', "Доставка {$product->name} онлайн на дом в Севастополе | sev-product.ru")
 @section('description', "Онлайн доставка товара {$product->name} в Севастополе. Привезём бесплатно при заказе от 1000 р, звоните нам: +7 (978) 852-79-33")
 @push('og')
     <meta property="og:title" content="{{ $product->title }}">
