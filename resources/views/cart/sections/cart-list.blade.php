@@ -2,7 +2,7 @@
     @foreach($items as $item)
         <div class="cart-list-item" data-product="{{ $item->id }}">
             <div class="cart-list-item-image">
-                <img src="{{ $product->image ? asset("storage/1c_catalog/{$product->image->path}") : asset('img/default-product.png') }}" alt="{{ $product->image ? $product->image->alt  : $product->name }}" title="{{ $product->image ? $product->image->title : $product->name }}">
+                <img src="{{ $item->image ? asset("storage/1c_catalog/{$item->image}") : asset('img/default-product.png') }}">
             </div>
             <div class="cart-list-item-name">
                 {{ $item->name }}
