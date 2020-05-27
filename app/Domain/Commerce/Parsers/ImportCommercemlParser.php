@@ -44,11 +44,18 @@ class ImportCommercemlParser extends CommercemlParser
                 $parentId = $parentCatalog->id;
             }
 
+            $alias = Str::slug($group->Наименование);
+
+            $catalogExist = CatalogProduct::where('alias', $alias)->first();
+            if ($catalogExist) {
+                $alias = $alias . '-' . rand(1,100);
+            }
+
             $catalog = Catalog::updateOrCreate(['uuid' => $uuid], [
                 'name' => $group->Наименование,
                 'parent_id' => $parentId,
                 'uuid' => $uuid,
-                'alias' => Str::slug($group->Наименование)
+                'alias' => $alias
             ]);
 
             if ($group->Группы->Группа) {
