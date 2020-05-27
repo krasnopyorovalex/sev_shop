@@ -457,3 +457,4 @@
 127.0.0.1 - - [27/May/2020:17:22:55 +0300] "GET /_debugbar/open?op=get&id=Xe8cf90c9790048a7d091aa65169a694c HTTP/1.1" 200 29008 "http://sevshop.ld/catalog/voda-raznaya" "Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:76.0) Gecko/20100101 Firefox/76.0"
 127.0.0.1 - - [27/May/2020:17:22:55 +0300] "GET /img/svg/icon-cheveron-down.svg HTTP/1.1" 304 0 "http://sevshop.ld/css/app.min.css" "Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:76.0) Gecko/20100101 Firefox/76.0"
 127.0.0.1 - - [27/May/2020:17:22:56 +0300] "GET /cart HTTP/1.1" 200 18578 "http://sevshop.ld/catalog/voda-raznaya" "Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:76.0) Gecko/20100101 Firefox/76.0"
+127.0.0.1 - - [27/May/2020:17:27:01 +0300] "GET /img/logo.png HTTP/1.1" 200 19012 "-" "Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:76.0) Gecko/20100101 Firefox/76.0"

@@ -8,19 +8,19 @@
                     <div class="col-3">
                         <div class="single__block">
                             <label for="f-name">Ваше имя:</label>
-                            <input type="text" id="f-name" name="name" value="{{ old('name') }}" minlength="3" required />
+                            <input type="text" id="f-name" name="name" value="{{ old('name') }}" minlength="3" required autocomplete="off" />
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="single__block">
                             <label for="f-phone">Ваше номера телефона:</label>
-                            <input type="text" id="f-phone" class="phone_field" value="{{ old('phone') }}" name="phone" required />
+                            <input type="text" id="f-phone" class="phone_field" value="{{ old('phone') }}" name="phone" required autocomplete="off" />
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="single__block">
                             <label for="f-address">Адрес доставки(г.Севастополь):</label>
-                            <input type="text" id="f-address" placeholder="Доставка только по г.Севастополь" value="{{ old('address') }}" name="address" required />
+                            <input type="text" id="f-address" placeholder="Доставка только по г.Севастополь" value="{{ old('address') }}" name="address" required autocomplete="off" />
                         </div>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                     <div class="col-3">
                         <div class="single__block">
                             <label for="f-date">Дата доставки:</label>
-                            <input type="text" id="f-date" class="date" value="{{ old('date') }}" name="date" required />
+                            <input type="text" id="f-date" class="date" value="{{ old('date') }}" name="date" required autocomplete="off" />
                         </div>
                     </div>
                     <div class="col-3">
