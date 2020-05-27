@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-7 desc">
                 <div class="title__first">
-                    Закажи консультацию специалиста
+                    Закажи обратный звонок
                 </div>
                 <div class="title__second">
                     бесплатно!
