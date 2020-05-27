@@ -78,10 +78,8 @@ class ImportCommercemlParser extends CommercemlParser
                 if ($catalog) {
 
                     $alias = Str::slug($catalogProduct->Наименование);
-
-                    $catalogProductExist = CatalogProduct::where('alias', $alias)->first();
-                    if ($catalogProductExist) {
-                        $alias = Str::slug($catalog->name.'-'.$catalogProduct->Наименование);
+                    while (CatalogProduct::where('alias', $alias)->exists()) {
+                        $alias .= '-' . random_int(1,350);
                     }
 
                     $catalogProductNew = CatalogProduct::updateOrCreate(['uuid' => $catalogProduct->Ид], [
