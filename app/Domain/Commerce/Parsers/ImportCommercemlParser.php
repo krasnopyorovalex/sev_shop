@@ -46,7 +46,7 @@ class ImportCommercemlParser extends CommercemlParser
 
             $alias = Str::slug($group->Наименование);
 
-            $catalogExist = CatalogProduct::where('alias', $alias)->first();
+            $catalogExist = Catalog::where('alias', $alias)->first();
             if ($catalogExist) {
                 $alias = $alias . '-' . rand(1,100);
             }
