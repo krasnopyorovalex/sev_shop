@@ -35,14 +35,15 @@
                         <div class="single__block">
                             <label for="f-time">Время доставки:</label>
                             <select id="f-time" name="time">
-                                <option value="в течение часа" selected>в течение часа</option>
+                                <option value="с 13:00 до 14:00">с 9:00 до 10:00</option>
+                                <option value="с 13:00 до 14:00">с 10:00 до 11:00</option>
+                                <option value="с 13:00 до 14:00">с 11:00 до 12:00</option>
+                                <option value="с 13:00 до 14:00">с 12:00 до 13:00</option>
                                 <option value="с 13:00 до 14:00">с 13:00 до 14:00</option>
                                 <option value="с 14:00 до 15:00">с 14:00 до 15:00</option>
                                 <option value="с 15:00 до 16:00">с 15:00 до 16:00</option>
                                 <option value="с 16:00 до 17:00">с 16:00 до 17:00</option>
                                 <option value="с 17:00 до 18:00">с 17:00 до 18:00</option>
-                                <option value="с 18:00 до 19:00">с 18:00 до 19:00</option>
-                                <option value="с 19:00 до 20:00">с 19:00 до 20:00</option>
                             </select>
                         </div>
                     </div>
