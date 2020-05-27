@@ -46,7 +46,7 @@ class ImportCommercemlParser extends CommercemlParser
 
             $alias = Str::slug($group->Наименование);
             while (Catalog::where('alias', $alias)->exists()) {
-                $alias .= '-' . random(1,350);
+                $alias .= '-' . random_int(1,350);
             }
 
             $catalog = Catalog::updateOrCreate(['uuid' => $uuid], [
