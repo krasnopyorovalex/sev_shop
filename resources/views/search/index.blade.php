@@ -46,13 +46,11 @@
                     <div class="catalog__items">
                         @foreach($products as $product)
                             <div class="catalog__items-item">
-                                @if($product->image)
-                                    <figure>
-                                        <a href="{{ $product->url }}">
-                                            <img src="{{ asset("storage/1c_catalog/{$product->image->path}") }}" alt="{{ $product->image->alt ?: $product->name }}" title="{{ $product->image->title ?: $product->name }}">
-                                        </a>
-                                    </figure>
-                                @endif
+                                <figure>
+                                    <a href="{{ $product->url }}">
+                                        <img src="{{ $product->image ? asset("storage/1c_catalog/{$product->image->path}") : asset('img/default-product.png') }}" alt="{{ $product->image ? $product->image->alt  : $product->name }}" title="{{ $product->image ? $product->image->title : $product->name }}">
+                                    </a>
+                                </figure>
                                 <div class="catalog__items-info">
                                     <div class="name">
                                         <a href="{{ $product->url }}">{{ $product->name }}</a>
