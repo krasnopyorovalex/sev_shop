@@ -26,7 +26,7 @@ class OfferCommercemlParser extends CommercemlParser
                     $catalogProduct = CatalogProduct::whereUuid($uuid)->first();
                     if ($catalogProduct) {
                         $catalogProduct->update([
-                            'price' => ceil($price),
+                            'price' => $price,
                             'in_store' => $inStore > 0 ? '1' : '0'
                         ]);
                     }
