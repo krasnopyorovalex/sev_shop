@@ -28,11 +28,11 @@
                     @endif
                     <a style="display: inline-block; vertical-align: middle;" href="{{ $item->attributes->url }}">{{ $item->name }}</a>
                 </td>
-                <td>{{ number_format($item->price, 0, '.', ' ') }} &#8381;</td>
+                <td>{{ format_as_price($item->price) }} &#8381;</td>
                 <td>
                     {{ $item->quantity }}
                 </td>
-                <td>{{ number_format($item->quantity * $item->price, 0, '.', ' ') }} &#8381;</td>
+                <td>{{ format_as_price($item->quantity * $item->price) }} &#8381;</td>
             </tr>
         @endforeach
         <tr>

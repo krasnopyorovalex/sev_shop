@@ -9,7 +9,7 @@
 {{--                <span>150 г, Флоу-пак</span>--}}
             </div>
             <div class="cart-list-item-single">
-                {{ number_format($item->price, 0, '.', ' ') }} <span>₽/шт.</span>
+                {{ format_as_price($item->price) }} <span>₽/шт.</span>
             </div>
             <div class="cart-list-item-quantity">
                 <div class="buy">
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="cart-list-item-sum">
-                <div class="value">{{ number_format($item->quantity * $item->price, 0, '.', ' ') }}</div>
+                <div class="value">{{ format_as_price($item->quantity * $item->price) }}</div>
                 <span>₽</span>
             </div>
         </div>

@@ -110,3 +110,10 @@ if (! function_exists('is_current')) {
         return in_array(request()->fullUrl(), $urls->toArray(), true);
     }
 }
+
+if (! function_exists('format_as_price')) {
+    function format_as_price(float $price): float
+    {
+       return number_format($price, 2, '.', ' ');
+    }
+}

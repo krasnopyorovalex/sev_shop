@@ -32,12 +32,8 @@ class CartRequests {
                     panelInfo.querySelector('.cart-list-item-quantity').innerText = data.quantity;
                 }
 
-                const totalInt = parseInt(data.total.replace(/ /g,''));
-                if (formOrderBtn && totalInt >= 1000) {
-                    formOrderBtn.disabled = false;
-                } else {
-                    formOrderBtn.disabled = true;
-                }
+                const totalInt = parseFloat(data.total);
+                formOrderBtn.disabled = !(formOrderBtn && totalInt >= 1000);
 
                 cartListItem.querySelector('.cart-list-item-sum .value').innerText = data.productPrice;
 

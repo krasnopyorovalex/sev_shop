@@ -21,7 +21,7 @@
         </div>
         <div class="panel-info-item-value">
             <div class="total">
-                <div class="total-value">{{ number_format($total, 0, '.', ' ') }}</div>
+                <div class="total-value">{{ format_as_price($total) }}</div>
                 <span>₽</span>
             </div>
         </div>

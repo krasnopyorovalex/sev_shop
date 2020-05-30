@@ -9,7 +9,7 @@
         <Роль>Продавец</Роль>
         <Валюта>RUB</Валюта>
         <Курс>1.0000</Курс>
-        <Сумма>{{ number_format($order->total, 2, '.', '') }}</Сумма>
+        <Сумма>{{ format_as_price($order->total) }}</Сумма>
         <Время>{{ $order->created_at->format('H:i:s') }}</Время>
         <Комментарий>{{ $order->comment }}</Комментарий>
         <Контрагенты>
@@ -28,9 +28,9 @@
                 <Ид>{{ $catalogProduct->uuid }}</Ид>
                 <Наименование>{{ $catalogProduct->name }}</Наименование>
                 <БазоваяЕдиница Код="796" НаименованиеПолное="Штука" МеждународноеСокращение="PCE">шт</БазоваяЕдиница>
-                <ЦенаЗаЕдиницу>{{ number_format($catalogProduct->price, 2, '.', '') }}</ЦенаЗаЕдиницу>
+                <ЦенаЗаЕдиницу>{{ format_as_price($catalogProduct->price) }}</ЦенаЗаЕдиницу>
                 <Количество>{{ $catalogProduct->pivot->quantity }}</Количество>
-                <Сумма>{{ number_format($catalogProduct->pivot->total, 2, '.', '') }}</Сумма>
+                <Сумма>{{ format_as_price($catalogProduct->pivot->total) }}</Сумма>
                 <ЗначенияРеквизитов>
                     <ЗначениеРеквизита>
                         <Наименование>ВидНоменклатуры</Наименование>

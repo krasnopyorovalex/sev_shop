@@ -75,7 +75,7 @@ class CartController extends Controller
         return [
             'status' => $status,
             'message' => 'Товар удален',
-            'total' => number_format($total, 0, '.', ' '),
+            'total' => format_as_price($total),
             'quantity' => $quantity
         ];
     }
@@ -93,9 +93,9 @@ class CartController extends Controller
 
         return [
             'product' => $product,
-            'productPrice' => number_format($product->price * $product->quantity, 0, '.', ' '),
+            'productPrice' => format_as_price($product->price * $product->quantity),
             'message' => 'Количество обновлено',
-            'total' => number_format($total, 0, '.', ' '),
+            'total' => format_as_price($total),
             'quantity' => $quantity
         ];
     }
