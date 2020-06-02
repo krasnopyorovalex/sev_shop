@@ -37,12 +37,12 @@
                         </li>
                         @if($catalog->parent && $catalog->parent->parent)
                             <li>
-                                <a href="{{ route('page.show', ['alias' => $catalog->parent->parent->alias]) }}">{{ $catalog->parent->parent->name }}</a>
+                                <a href="{{ route('catalog.show', ['alias' => $catalog->parent->parent->alias]) }}">{{ $catalog->parent->parent->name }}</a>
                             </li>
                         @endif
                         @if($catalog->parent)
                         <li>
-                            <a href="{{ route('page.show', ['alias' => $catalog->parent->alias]) }}">{{ $catalog->parent->name }}</a>
+                            <a href="{{ route('catalog.show', ['alias' => $catalog->parent->alias]) }}">{{ $catalog->parent->name }}</a>
                         </li>
                         @endif
                         <li>

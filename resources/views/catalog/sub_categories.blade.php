@@ -33,7 +33,7 @@
                             <a href="{{ route('page.show') }}">Главная</a>
                         </li>
                         <li>
-                            <a href="{{ route('page.show', ['alias' => 'catalog']) }}">Каталог</a>
+                            <a href="{{ route('catalog.show', ['alias' => 'catalog']) }}">Каталог</a>
                         </li>
                         <li>
                             {{ $catalog->name }}
