@@ -114,6 +114,6 @@ if (! function_exists('is_current')) {
 if (! function_exists('format_as_price')) {
     function format_as_price(float $price): float
     {
-       return number_format($price, 2, '.', ' ');
+       return number_format($price, 2, '.', '');
     }
 }
