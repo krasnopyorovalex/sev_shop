@@ -17,12 +17,6 @@ Route::pattern('alias', '[\da-z-]+');
 
 Auth::routes();
 
-Route::get('parser', function () {
-    \Domain\Commerce\Jobs\ParseCommercemlJob::dispatch(
-        storage_path('app/public/1c_catalog/offers0_1.xml')
-    );
-});
-
 Route::post('form/consultation-send', 'FormHandlerController@consultation')->name('consultation.send');
 Route::post('form/send-recall', 'FormHandlerController@recall')->name('recall.send');
 Route::get('search', 'SearchController')->name('search');

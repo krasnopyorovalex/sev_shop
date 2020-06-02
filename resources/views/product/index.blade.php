@@ -36,17 +36,17 @@
                         </li>
                         @isset($product->catalog->parent->parent)
                             <li>
-                                <a href="{{ route('page.show', ['alias' => $product->catalog->parent->parent->alias]) }}">{{ $product->catalog->parent->parent->name }}</a>
+                                <a href="{{ route('catalog.show', ['alias' => $product->catalog->parent->parent->alias]) }}">{{ $product->catalog->parent->parent->name }}</a>
                             </li>
                         @endisset
                         @isset($product->catalog->parent)
                             <li>
-                                <a href="{{ route('page.show', ['alias' => $product->catalog->parent->alias]) }}">{{ $product->catalog->parent->name }}</a>
+                                <a href="{{ route('catalog.show', ['alias' => $product->catalog->parent->alias]) }}">{{ $product->catalog->parent->name }}</a>
                             </li>
                         @endisset
                         @isset($product->catalog)
                             <li>
-                                <a href="{{ route('page.show', ['alias' => $product->catalog->alias]) }}">{{ $product->catalog->name }}</a>
+                                <a href="{{ route('catalog.show', ['alias' => $product->catalog->alias]) }}">{{ $product->catalog->name }}</a>
                             </li>
                         @endisset
                         <li>
@@ -66,7 +66,7 @@
                         <div class="row">
                             <div class="col-4">
                                 <div class="product_price price">
-                                    {{ $product->price }} <span>₽/шт.</span>
+                                    {{ $product->getPrice() }} <span>₽/шт.</span>
                                 </div>
                                 <div class="add-to-cart-box">
                                     <div class="buy">

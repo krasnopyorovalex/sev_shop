@@ -62,7 +62,7 @@ class CatalogProduct extends Model
      */
     public function getPrice(): HtmlString
     {
-        return new HtmlString(sprintf('%s', number_format($this->price, 0, '.', ' ')));
+        return new HtmlString(sprintf('%s', format_as_price($this->price)));
     }
 
     /**
