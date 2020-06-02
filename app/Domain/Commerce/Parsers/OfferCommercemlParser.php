@@ -12,7 +12,8 @@ class OfferCommercemlParser extends CommercemlParser
     public function parse(): void
     {
         $commerce = new CommerceML();
-        $commerce->loadImportXml(storage_path("app/public/1c_catalog/{$this->filename}"));
+
+        $commerce->loadImportXml($this->filename);
 
         $offers = $commerce->importXml->ПакетПредложений->Предложения->Предложение;
 
