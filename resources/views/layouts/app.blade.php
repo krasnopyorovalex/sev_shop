@@ -105,7 +105,7 @@
                         </div>
                         <div class="contact">
                             {{ svg('phone') }}
-                            <a href="tel:+79788527933" title="Позвонить">+7(978) 852-79-33 Виталий</a>
+                            <a href="tel:+79788527933" title="Позвонить">+7(978) 852-79-33</a>
                         </div>
                     </div>
                     <div class="col-5">
