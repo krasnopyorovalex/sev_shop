@@ -44,7 +44,7 @@ class CartRequests {
             });
     }
 
-    remove(productId, btn, hCartCount, panelInfo = null) {
+    remove(productId, btn, hCartCount, panelInfo = null, formOrderBtn = null) {
         axios.post(`cart/remove/${productId}`)
             .then(function (response) {
                 btn.closest('.cart-list-item').remove();
@@ -56,6 +56,9 @@ class CartRequests {
                     panelInfo.querySelector('.total-value').innerText = data.total;
                     panelInfo.querySelector('.cart-list-item-quantity').innerText = data.quantity;
                 }
+
+                formOrderBtn.disabled = !(formOrderBtn && data.total >= 1000);
+
                 return hCartCount.innerText = data.quantity;
             })
             .catch(function (error) {

@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const btn = event.currentTarget;
                 const productId = btn.getAttribute('data-product');
 
-                return cartRequests.remove(productId, btn, hCartCount, panelInfo);
+                return cartRequests.remove(productId, btn, hCartCount, panelInfo, formOrderBtn);
             });
         }
     }
