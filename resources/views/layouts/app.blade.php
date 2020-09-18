@@ -114,12 +114,12 @@
                     <div class="col-3">
                         <div class="develop">
                             <div class="develop__link">
-                                <a href="https://krasber.ru" target="_blank" rel="nofollow">
+                                <a href="https://krasber.ru/" target="_blank">
                                     Создание, продвижение и <br/>техподдержка сайтов
                                 </a>
                             </div>
                             <div class="develop__logo">
-                                <a href="https://krasber.ru" target="_blank" rel="nofollow">
+                                <a href="https://krasber.ru/" target="_blank">
                                     <img src="{{ asset('img/krasber.svg') }}" alt="Веб-студия Красбер">
                                 </a>
                             </div>
