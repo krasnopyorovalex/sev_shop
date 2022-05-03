@@ -27,6 +27,9 @@ class GetCatalogProductsByNameQuery
      */
     public function handle()
     {
-        return CatalogProduct::where('name', 'like', '%' . $this->keyword . '%')->paginate();
+        return CatalogProduct::where('name', 'like', '%' . $this->keyword . '%')
+            ->whereInStore('1')
+            ->where('price', '>', 0)
+            ->paginate();
     }
 }
